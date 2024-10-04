@@ -1,0 +1,127 @@
+/* Pretendard-Regular 글꼴 정의 */
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Pretendard-Bold 글꼴 정의 */
+@font-face {
+    font-family: 'Pretendard-Bold';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+}
+
+/* 기본 설정 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* body에 Pretendard-Regular 적용 */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f6f6f6;
+    font-family: 'Pretendard-Regular', Arial, sans-serif;
+}
+
+.container {
+    background-color: #ffffff;
+    font-size: 15px;
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 400px;
+    height: 90vh;
+    text-align: center;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px; /* 간격 감소: 30px → 10px */
+    font-family: 'Pretendard-Regular', Arial, sans-serif;
+}
+
+/* 제목에 볼드 폰트 적용 및 margin-bottom 조정 */
+.container h1,
+.container h2 {  /* h2가 사용될 경우를 대비 */
+    margin-bottom: 10px; /* 필요 시 조정 */
+    font-family: 'Pretendard-Bold', Arial, sans-serif; /* 볼드 폰트 적용 */
+}
+
+/* 캐릭터 이미지과 p 요소 사이의 간격 조정 */
+.character-image {
+    width: 200px;
+    height: auto;
+    margin-bottom: 10px; /* 필요 시 조정 */
+}
+
+/* .prompt-text for password setting */
+.prompt-text {
+    font-family: 'Pretendard-Bold', Arial, sans-serif;
+    font-size: 25px;
+    margin-bottom: 10px;
+}
+
+/* input-container for password inputs */
+.input-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* 입력창들 간의 간격을 20px으로 설정 */
+    width: 100%;
+}
+
+/* .pw-input styled similar to .id-input */
+.pw-input {
+    width: 100%; /* 너비를 100%로 설정하여 컨테이너에 맞춤 */
+    padding: 15px;
+    border-radius: 25px;
+    border: 1px solid #ddd;
+    font-size: 16px;
+    font-family: 'Pretendard-Regular', Arial, sans-serif;
+    margin: 0 auto; /* 중앙 정렬 유지 */
+    margin-top: 5px;
+}
+
+.pw-input:focus {
+    border: 1px solid #5186D4; /* 색상 변경 to match make_id.css */
+    outline: none;
+}
+
+/* submit button styled similar to make_id.css */
+button {
+    width: 105%; /* 너비를 120%로 설정 */
+    height: 50px;
+    padding: 15px 0;
+    background-color: #5186D4; /* 색상 변경 to make_id.css */
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    font-size: 16px;
+    font-family: 'Pretendard-Bold', Arial, sans-serif; /* 볼드 폰트 적용 */
+    border: 1px solid #5186D4; /* 색상 변경 */
+    margin-top: 20px; /* 버튼과 마지막 입력창 사이에 20px의 간격 추가 */
+    position: relative; /* 상대 위치 지정 */
+    left: 50%; /* 왼쪽으로 50% 이동 */
+    transform: translateX(-50%); /* 자신의 너비의 절반만큼 왼쪽으로 이동하여 중앙 정렬 */
+}
+
+button:hover {
+    background-color: white;
+    color: #5186D4;
+    border: 1px solid #5186D4;
+}
+
+#make-pw-form button[type="submit"] {
+    margin-top: 20px; /* 간격 유지 */
+}
+

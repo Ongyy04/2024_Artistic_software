@@ -1,0 +1,82 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>인기 게시물🔥</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/mypost.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/shared.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='image/icon.png') }}" type="image/x-icon">
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <a href="{{ url_for('home_view') }}" class="back-arrow">
+          <img src="{{ url_for('static', filename='image/back-arrow.png') }}" alt="Back to my">
+        </a>
+
+        <h1>인기 게시물🔥</h1>
+      </header>
+      <main>
+        <section class="recommendations">
+          {% if top_posts %}
+            <div class="recommendation-cards"> <!-- Added a unique class "custom-post-list" -->
+                {% for post in top_posts %}
+                    <a href="{{ url_for('post', post_id=post['_id']) }}" class="post-link-custom-post-link"> <!-- Added a unique class "custom-post-link" -->
+                      <div class="card">
+                        <img src="{{url_for('static',filename=post['image_path'])}}" alt="멋진 사진" class="card-img">
+                        <div class="card-content">
+                            <p class="review">
+                                내용: {{ post['post_content'][:20] }}{% if post['post_content']|length > 20 %}...{% endif %}
+                            </p>
+                            <p class="location">지역: {{ post['tags']['region'] }}</p>
+                            <p class="author">여행 유형: {{ post['tags']['travel_type'] }}</p>
+                            
+                           
+                        </div>
+                    </div>
+                    </a>
+                {% endfor %}
+            </div>
+          {% else %}
+            <p>No popular posts available at the moment.</p>
+          {% endif %}
+        </section>
+      </main>
+
+      <footer>
+        <div class="footer-menu">
+          <a href="{{ url_for('write') }}" class="post-link">
+            <img class="footer-menu-icon" src="{{ url_for('static', filename='image/write.png') }}" alt="글쓰기아이콘"/>
+          </a>
+          <span>글쓰기</span>
+        </div>
+        <div class="footer-menu">
+          <a href="{{ url_for('save') }}" class="post-link">
+            <img class="footer-menu-icon" src="{{ url_for('static', filename='image/save.png') }}" alt="저장됨아이콘"/>
+          </a>
+          <span>저장됨</span>
+        </div>
+        <div class="footer-menu">
+          <a href="{{ url_for('home_view') }}" class="post-link">
+            <img class="footer-menu-icon" src="{{ url_for('static', filename='image/home.png') }}" alt="홈아이콘"/>
+          </a>
+          <span>홈</span>
+        </div>
+        <div class="footer-menu">
+          <a href="{{ url_for('my') }}" class="post-link">
+            <img class="footer-menu-icon" src="{{ url_for('static', filename='image/my.png') }}" alt="내여행아이콘"/>
+          </a>
+          <span>내 여행</span>
+        </div>
+        <div class="footer-menu">
+          <a href="{{ url_for('setting') }}" class="post-link">
+            <img class="footer-menu-icon" src="{{ url_for('static', filename='image/setting.png') }}" alt="설정아이콘"/>
+          </a>
+          <span>설정</span>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

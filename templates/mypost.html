@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>내 게시물</title>
+    <link rel="icon" href="{{ url_for('static', filename='image/icon.png') }}" type="image/x-icon">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/shared.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/mypost.css')}}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="{{ url_for('my') }}" class="back-arrow">
+                <img src="{{ url_for('static', filename='image/back-arrow.png') }}" alt="Back to my">
+            </a>
+            <h1>내 게시물</h1>
+        </header>   
+        <main>
+            <section class="recommendations">
+                <div class="recommendation-cards">
+                    {% for post in posts %}
+                    <a href="{{ url_for('post', post_id=post['_id']) }}" class="post-link-custom-post-link">
+                        <div class="card">
+                            <img src="{{url_for('static',filename=post['image_path'])}}" alt="멋진 사진" class="card-img">
+                            <div class="card-content">
+                                <p class="review">
+                                    내용: {{ post['content'][:20] }}{% if post['content']|length > 20 %}...{% endif %}
+                                </p>
+                                <p class="location">지역: {{ post['tags']['region'] }}</p>
+                                <p class="author">여행 유형: {{ post['tags']['travel_type'] }}</p>
+                                
+                                <!-- Displaying tags as hashtags -->
+                                
+                            </div>
+                        </div>
+                    </a>
+                    {% endfor %}
+                </div>
+            </section>
+            <section class="bottom"></section>
+        </main>
+    </div>
+</body>
+</html>
+
+    </div>
+  </body>
+</html>

@@ -1,0 +1,129 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f6f6f6;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    background-color: #ffffff;
+    padding: 15px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 400px;
+    height: 90vh;
+    text-align: center;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+.confirm-container {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: 22px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 12px;
+}
+
+.profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+/* 이하 기존 CSS 유지 */
+
+.profile-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: #E0E7FF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-text {
+    margin-top: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+}
+
+.input-container {
+    width: 100%;
+    position: relative;
+    margin-bottom: 8px;
+}
+
+.input-field {
+    width: 85%;
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    background-color: #E0E7FF;
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.verify-button {
+    position: absolute;
+    right: 35px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #000;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    font-size: 12px;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 8px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.verify-button:hover {
+    background-color: #ffffff;
+    color: #000;
+    border: 1px solid #000;
+}
+
+.confirm-button {
+    padding: 12px 20px;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    background-color: #3753FF;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    margin-top: auto;
+    margin-bottom: 12px;
+}
+
+.confirm-button:hover {
+    background-color: white;
+    color: #3753FF;
+    border-color: #3753FF;
+}

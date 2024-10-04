@@ -1,0 +1,122 @@
+/* Pretendard-Bold 글꼴 정의 */
+@font-face {
+    font-family: 'Pretendard-Bold';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 기본 설정 */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f6f6f6;
+    font-family: 'Pretendard-Regular', Arial, sans-serif;
+}
+
+.container {
+    background-color: #ffffff;
+    font-size: 15px;
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 400px;
+    height: 90vh;
+    text-align: center;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 24px; /* 간격 감소: 30px → 10px */
+    font-family: 'Pretendard-Bold', Arial, sans-serif;
+}
+
+h1 {
+    font-size: 2em;
+    margin-bottom: 10px; /* 필요 시 조정 */
+    font-family: 'Pretendard-Bold', Arial, sans-serif;
+}
+
+.profile-image {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #5186D4; /* 변경된 파란색 테두리 */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+    margin-top: 20px; /* 상단 여백 유지 */
+}
+
+.profile-image:hover {
+    transform: scale(1.05);
+}
+
+.profile-instruction {
+    font-size: 16px; /* 글씨 크기 약간 증가 */
+    color: #888888;
+    margin-top: 12px; /* 이미지와의 간격 증가 */
+    margin-bottom: 20px; /* 폼 요소와의 간격 추가 */
+    text-align: center;
+    font-family: 'Pretendard-Bold', Arial, sans-serif;
+}
+
+button {
+    width: 105%; /* 너비를 120%로 설정 */
+    height: 50px;
+    padding: 15px 0;
+    background-color: #5186D4; /* 색상 변경 to make_id.css */
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    font-size: 16px;
+    font-family: 'Pretendard-Bold', Arial, sans-serif; /* 볼드 폰트 적용 */
+    border: 1px solid #5186D4; /* 색상 변경 */
+    margin-top: 20px; /* 버튼과 마지막 입력창 사이에 20px의 간격 추가 */
+    position: relative; /* 상대 위치 지정 */
+    left: 50%; /* 왼쪽으로 50% 이동 */
+    transform: translateX(-50%); /* 자신의 너비의 절반만큼 왼쪽으로 이동하여 중앙 정렬 */
+}
+
+button:hover {
+    background-color: white;
+    color: #5186D4; /* 색상 변경 */
+    border: 1px solid #5186D4; /* 색상 변경 */
+}
+
+.name-input {
+    width: 70%; /* 입력 필드 너비 증가 */
+    height: 50px; /* 입력 필드 높이 증가 */
+    padding: 15px; /* 패딩 증가 */
+    margin-bottom: 25px; /* 입력 필드 하단 간격 증가 */
+    border: 1px solid #ccc;
+    border-radius: 35px; /* 입력 필드 둥근 모서리 증가 */
+    box-shadow: inset 0px 2px 5px rgba(0, 0, 0, 0.05);
+    transition: box-shadow 0.3s ease-in-out, border-color 0.3s ease-in-out;
+    font-family: 'Pretendard-Bold', Arial, sans-serif;
+}
+
+.name-input:focus {
+    box-shadow: inset 0px 2px 8px rgba(0, 0, 0, 0.1);
+    border-color: #5186D4;
+    outline: none;
+}
+
+/* 추가적인 간격 조정을 위한 클래스 (필요 시 사용 가능) */
+/*
+.spacing-extra {
+    margin: 20px 0;
+}
+*/

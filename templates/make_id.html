@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>아이디 생성</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/make_id.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='image/icon.png') }}" type="image/x-icon">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- jQuery 추가 -->
+</head>
+<body>
+    <div class="container">
+        <h1>새로 오신 걸 환영합니다!</h1>
+        <img src="{{ url_for('static', filename='image/character_1.png') }}" alt="Character Image" class="character-image">
+        <p class="prompt-text">아이디를 설정하세요</p>
+        <form id="make-id-form" method="POST" action="/make_id">
+            <div class="input-container">
+                <input type="text" class="id-input" name="user_id" id="user_id" placeholder="아이디" required>
+                <button type="button" class="verify-button" id="check-id-button">중복확인</button>
+            </div>
+            <button type="submit">다음으로</button>
+        </form>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            var isIdChecked = false;  // 중복확인 버튼이 눌렸는지 여부를 추적
+
+            $('#check-id-button').on('click', function() {
+                var user_id = $('#user_id').val();
+                
+                if (!user_id) {
+                    alert('아이디를 입력하세요.');
+                    return;
+                }
+                
+                // AJAX 요청으로 아이디 중복 확인
+                $.ajax({
+                    url: '/check_id',  // Flask 라우트
+                    method: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({ user_id: user_id }),
+                    success: function(response) {
+                        if (response.status === 'duplicate') {
+                            alert(response.message);  // 중복된 아이디입니다.
+                        } else {
+                            alert(response.message);  // 사용 가능한 아이디입니다.
+                            isIdChecked = true;  // 중복 확인이 성공했음을 표시
+                        }
+                    },
+                    error: function() {
+                        alert('이미 사용 중인 아이디입니다.');
+                    }
+                });
+            });
+
+            // 폼 제출 시 중복확인 여부를 체크
+            $('#make-id-form').on('submit', function(event) {
+                if (!isIdChecked) {
+                    alert('아이디 중복 확인을 먼저 해주세요.');
+                    event.preventDefault();  // 폼 제출을 막음
+                }
+            });
+        });
+    </script>
+</body>
+</html>

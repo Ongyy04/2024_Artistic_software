@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>프로필 생성</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/make_profile.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='image/icon.png') }}" type="image/x-icon">
+</head>
+<body>
+    <div class="container">
+        <h1>새로 오신 걸 환영합니다!</h1>
+        <form method="POST" action="/make_profile" enctype="multipart/form-data">
+            <input type="file" id="profile-input" name="profile_image" accept="image/*" style="display: none;">
+            <img src="{{ url_for('static', filename='image/profile.png') }}" alt="profile" class="profile-image" id="profile-image">
+
+            <p class="profile-instruction">프로필 사진을 변경하려면 사진을 누르세요</p>
+            <button type="submit">다음으로</button>
+        </form>
+    </div>
+    <script src="{{ url_for('static', filename='js/make_profile.js') }}"></script>
+</body>
+</html>

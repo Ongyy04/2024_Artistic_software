@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>아이디 찾기 결과</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/id.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='image/icon.png') }}" type="image/x-icon">
+</head>
+<body>
+    <div class="container">
+        <img src="{{ url_for('static', filename='image/logo.png') }}" alt="Tinda Logo" class="logo">
+        
+        <div class="result">
+            <p>당신의 아이디는 <span id="user-id">{{ user_id }}</span> 입니다.</p>
+        </div>
+        
+        <!-- Use Flask's url_for to link to the login route -->
+        <button class="login-button" onclick="location.href='{{ url_for('login') }}'">로그인하러 가기</button>
+        
+        <div class="find-password">
+            <a href="{{ url_for('find_pw') }}">비밀번호 찾기</a>
+        </div>
+    </div>
+</body>
+</html>

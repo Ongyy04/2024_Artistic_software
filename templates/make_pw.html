@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>비밀번호 설정</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/make_pw.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='image/icon.png') }}" type="image/x-icon">
+</head>
+<body>
+    <div class="container">
+        <h1>새로 오신걸 환영합니다!</h1>
+        <img src="{{ url_for('static', filename='image/character_2.png') }}" alt="Character Image" class="character-image">
+        <p class="prompt-text">비밀번호를 설정하세요</p>
+        <form id="password-form" method="POST" action="/make_pw">
+            <div class="input-container">
+                <input type="password" class="pw-input" name="password" id="password" placeholder="비밀번호 설정" required>
+            </div>
+            
+            <div class="input-container">
+                <input type="password" class="pw-input" name="confirm_password" id="confirm_password" placeholder="비밀번호 확인" required>
+            </div>
+            
+            <button type="submit">다음으로</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('password-form').addEventListener('submit', function(event) {
+            var password = document.getElementById('password').value;
+            var confirmPassword = document.getElementById('confirm_password').value;
+            
+            // 비밀번호가 일치하지 않으면 알림을 띄우고 폼 제출을 막음
+            if (password !== confirmPassword) {
+                alert('비밀번호가 일치하지 않습니다.');
+                event.preventDefault();  // 폼 제출 방지
+            }
+        });
+    </script>
+</body>
+</html>

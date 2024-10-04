@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='image/icon.png') }}" type="image/x-icon">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="profile">
+                <!-- 프로필 이미지 경로 수정 (필요 시) -->
+                <!-- Replace profile image and username with logo -->
+                <img src="{{ url_for('static', filename='image/logo.png') }}" alt="Logo" class="logo-image">
+
+                
+                <!-- Search 아이콘 추가 -->
+                <a href="{{ url_for('search_get') }}">
+                    <img src="{{ url_for('static', filename='image/search.png') }}" alt="Search" class="search">
+                </a>
+                
+                <!-- 기존 출석체크 아이콘 -->
+                <a href="{{ url_for('check') }}">
+                    <img src="{{ url_for('static', filename='image/출석체크.png') }}" alt="출석체크" class="check">
+                </a>
+            </div>
+        </div>
+
+
+
+
+        
+      <div class="tab-menu">
+        <button class="tab {% if selected_region == '전체' %}active{% endif %}" onclick="window.location.href='{{ url_for('home_view', region='전체') }}'">전체</button>
+        <button class="tab {% if selected_region == '한국' %}active{% endif %}" onclick="window.location.href='{{ url_for('home_view', region='한국') }}'">한국</button>
+        <button class="tab {% if selected_region == '아시아' %}active{% endif %}" onclick="window.location.href='{{ url_for('home_view', region='아시아') }}'">아시아</button>
+        <button class="tab {% if selected_region == '유럽' %}active{% endif %}" onclick="window.location.href='{{ url_for('home_view', region='유럽') }}'">유럽</button>
+        <button class="tab {% if selected_region == '아메리카' %}active{% endif %}" onclick="window.location.href='{{ url_for('home_view', region='아메리카') }}'">아메리카</button>
+    </div>
+
+
+<!-- 인기 게시물 -->
+<div class="popular-posts">
+    <h2><a href="{{ url_for('hotpost') }}">     인기 게시물🔥</a></h2>
+    
+    <div class="post-list-hot">
+        {% for post in top_posts %}
+        <div class="hot-post-card">
+            <div class="post-header">
+                <img src="{{ post.profile_image }}" alt="프로필 이미지" class="profile-img">
+                <span class="username">{{ post['nickname'] }}</span>
+            </div>
+            <a href="{{ url_for('post', post_id=post['_id']) }}" class="post-link">
+                <div class="image-placeholder">
+                    <img src="{{ url_for('static', filename=post['image_path']) }}" alt="Post Image">
+                </div>
+                <div class="post-country">
+                    <span>{{ post['region'] }}</span>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+
+
+<!-- 추천 게시물 -->
+<div class="recommended-posts">
+    <h2>     추천 게시물 ✨</h2>
+    <div class="recommended-list">
+        {% for post in recommended_posts %}
+        <div class="recommended-post-card">
+            <a href="{{ url_for('post', post_id=post['_id']) }}" class="post-link">
+                <div class="post-header">
+                    <img src="{{ post.profile_image }}" alt="프로필 이미지" class="profile-img">
+                    <span class="username">{{ post['nickname'] }}</span>
+                </div>
+                <div class="image-placeholder">
+                    <img src="{{ url_for('static', filename=post['image_path']) }}" alt="Post Image">
+                </div>
+                <div class="post-hashtags">
+                    {% for tag in post['tags_list'] %}
+                        <span class="hashtag">#{{ tag }}</span>
+                    {% endfor %}
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+
+    <section class="bottom"></section>
+
+    <footer>
+        <div class="footer-menu">
+            <a href="{{ url_for('write') }}" class="post-link">
+                <img class="footer-menu-icon" src="{{ url_for('static', filename='image/write.png') }}" alt="글쓰기아이콘"/>
+            </a>
+            <span>글쓰기</span>
+        </div>
+        <div class="footer-menu">
+            <a href="{{ url_for('save') }}" class="post-link">
+                <img class="footer-menu-icon" src="{{ url_for('static', filename='image/save.png') }}" alt="저장됨아이콘"/>
+            </a>
+            <span>저장됨</span>
+        </div>
+        <div class="footer-menu">
+            <a href="{{ url_for('home_view') }}" class="post-link">
+                <img class="footer-menu-icon" src="{{ url_for('static', filename='image/home.png') }}" alt="홈아이콘"/>
+            </a>
+            <span>홈</span>
+        </div>
+        <div class="footer-menu">
+            <a href="{{ url_for('my') }}" class="post-link">
+                <img class="footer-menu-icon" src="{{ url_for('static', filename='image/my.png') }}" alt="내여행아이콘"/>
+            </a>
+            <span>내 여행</span>
+        </div>
+        <div class="footer-menu">
+            <a href="{{ url_for('setting') }}" class="post-link">
+                <img class="footer-menu-icon" src="{{ url_for('static', filename='image/setting.png') }}" alt="설정아이콘"/>
+            </a>
+            <span>설정</span>
+        </div>
+    </footer>
+
+
+    <script src="{{ url_for('static', filename='js/home.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,161 @@
+/* Pretendard-Regular 폰트 선언 */
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* 기본 설정 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* body에 Pretendard-Regular 적용 */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f6f6f6;
+    font-family: 'Pretendard-Regular', Arial, sans-serif; /* Pretendard-Regular 적용 */
+}
+
+.container {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 400px;
+    height: 90vh;
+    text-align: center;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* 요소들을 세로로 가운데 정렬 */
+    align-items: center; /* 요소들을 가로로 가운데 정렬 */
+    gap: 20px; /* 요소들 간의 간격 */
+    font-family: 'Pretendard-Regular', Arial, sans-serif; /* Pretendard-Regular 적용 */
+}
+
+.logo {
+    width: 60%;
+    margin-bottom: 20px; /* 로고 아래 여백 추가 */
+}
+
+.verification {
+    width: 40%; /* 전화번호 인증 테두리의 가로 폭 조절 - 이 값을 줄이면 테두리 가로가 줄어듭니다 */
+    padding: 20px;
+    border: 2px solid #ccc; /* 테두리 추가 */
+    border-radius: 10px; /* 테두리의 모서리를 둥글게 설정 */
+    text-align: center;
+    transition: border-color 0.3s; /* 테두리 색상 변경을 부드럽게 */
+}
+
+.icon {
+    width: 50px;
+    margin-bottom: 10px;
+}
+
+.verification p {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+}
+
+.input-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+
+.input-field {
+    width: 70%;
+    padding: 15px;
+    border-radius: 25px;
+    border: 1px solid #ddd;
+    font-size: 16px;
+    font-family: 'Pretendard-Regular', Arial, sans-serif; /* Pretendard-Regular 적용 */
+    margin-bottom: 10px;
+}
+
+.input-field:focus {
+    border: 1px solid #5186D4; /* 클릭 시 파란색으로 변경 */
+    outline: none; /* 브라우저 기본 outline 제거 */
+}
+
+.send-button {
+    width: 30%;
+    padding: 10px;
+    border-radius: 25px;
+    border: 1px solid transparent;
+    background-color: #5186D4; /* 색상 변경 */
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    font-family: 'Pretendard-Bold', Arial, sans-serif; /* 볼드 폰트 적용 */
+}
+
+.send-button:hover {
+    background-color: white;
+    color: #5186D4; /* 색상 변경 */
+    border-color: #5186D4; /* 색상 변경 */
+}
+
+.verify-button {
+    width: 30%;
+    padding: 10px;
+    border-radius: 25px;
+    border: 1px solid transparent;
+    background-color: #5186D4; /* 색상 변경 */
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    font-family: 'Pretendard-Bold', Arial, sans-serif; /* 볼드 폰트 적용 */
+}
+
+.verify-button:hover {
+    background-color: white;
+    color: #5186D4; /* 색상 변경 */
+    border-color: #5186D4; /* 색상 변경 */
+}
+
+.confirm-button {
+    padding: 15px 25px;
+    border-radius: 25px;
+    border: 1px solid transparent; /* 기본 상태에서 투명한 테두리 추가 (두께: 1px) */
+    background-color: #5186D4;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s; /* 배경색, 글자색, 테두리 색 변경을 부드럽게 */
+    font-family: 'Pretendard-Regular', Arial, sans-serif; /* Pretendard-Regular 적용 */
+    font-weight: bold;
+}
+
+.confirm-button:hover {
+    background-color: white; /* 마우스를 올렸을 때 버튼 배경색 변경 */
+    color: #5186D4; /* 마우스를 올렸을 때 글자색 변경 */
+    border-color: #5186D4; /* 테두리 색상 변경 */
+}
+
+.find-password {
+    margin-top: 10px;
+}
+
+.find-password a {
+    color: #333;
+    font-size: 14px;
+    text-decoration: none;
+    font-family: 'Pretendard-Regular', Arial, sans-serif; /* Pretendard-Regular 적용 */
+}
+
+.find-password a:hover {
+    text-decoration: underline;
+}

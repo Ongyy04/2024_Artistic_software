@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/choose.css') }}">
+</head>
+<body>
+    <div class="container">
+        <!-- Back Arrow -->
+        <div class="back-button">
+            <a href="{{ url_for('make_profile') }}" aria-label="뒤로가기">
+                <img src="{{ url_for('static', filename='image/back-arrow.png') }}" alt="Back">
+            </a>
+        </div>
+
+        <!-- Question Section -->
+        <div class="question-section">
+            <h1>성별을 골라주세요</h1>
+        </div>
+
+        <!-- Form to submit gender -->
+        <form action="{{ url_for('save_gender') }}" method="POST">
+            <div class="answer-container">
+                <label class="answer" for="female">
+                    <input type="radio" id="female" name="gender" value="여자" checked>
+                    <span>여자</span>
+                </label>
+                <label class="answer" for="male">
+                    <input type="radio" id="male" name="gender" value="남자">
+                    <span>남자</span>
+                </label>
+            </div>
+
+            <!-- Next Button -->
+            <button type="submit" class="next-button">다음으로</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,200 @@
+/* Import the Pretendard-Regular font */
+@font-face {
+    font-family: 'Pretendard-Bold';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+}
+
+/* 공통 스타일 (Common styles for the whole page) */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Pretendard-Bold', Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+    overflow: auto; /* Allows body to scroll */
+    width: 100%;
+    min-height: 100vh; /* Minimum height to cover full viewport */
+}
+
+.container {
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    font-weight: bold;
+    margin-top: 20px; /* Added margin for spacing from top */
+}
+
+/* 헤더 스타일 */
+header {
+    display: flex;
+    padding: 0;
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+    max-width: 360px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.back-return {
+    width: 30px;
+    cursor: pointer;
+}
+
+/* 메인 콘텐츠 영역 스타일 */
+.post {
+    background-color: #fff;
+    margin-bottom: 70px;
+    border-radius: 4px;
+    padding: 10px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.profile-img {
+    width: 20px;
+    height: 20px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+
+/* 이미지가 들어갈 수 있는 스타일 */
+.post-image {
+    background-color: #ffffff;
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.post-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+/* 포스트 푸터 스타일 */
+.post-footer {
+    display: flex;
+    flex-direction: column;
+}
+
+.tags-right {
+    display : flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.tags {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 1px;
+    margin-bottom: 7px;
+}
+
+.tag {
+    font-size: 12px;
+    margin-right: 10px;
+    color: #8800ff;
+    cursor: pointer;
+}
+
+.post-icon {
+    display: inline-block;
+    cursor: pointer;
+}
+
+.like-button {
+    height: 17px;
+}
+
+.stored-button {
+    height: 17px;
+}
+
+.post-footer .content {
+    font-size: 12px;
+    margin-bottom: 10px;
+    margin-left: 5px;
+    color: #1f1f1f;
+    font-weight: 400;
+}
+
+.post-footer .comment {
+    margin-left: 10px;
+    font-size: 10px;
+    color: #323232;
+}
+
+hr {
+    opacity: 0.5;
+    margin-top: 0;
+    margin-bottom: 14px;
+    border: none;
+    height: 0.8px;
+    background-color: #1e1e1e;
+    width: 100%;
+}
+
+/* 하단 네비게이션 바 스타일 (home과 동일하게) */
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    border-top: 1px solid #ddd;
+    padding: 10px 0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    max-width: 360px;
+    margin: 0 auto;
+    padding-bottom: 5px;
+}
+
+.footer-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    color: #888;
+    font-size: 0.5em;
+    text-align: center;
+    margin: 0 20px;
+}
+
+.footer-menu span {
+    font-size: 0.8em;
+    margin-top: 3px;
+    font-weight: bold;
+}
+
+.footer-menu-icon {
+    height: 25px;
+    width: 25px;
+}

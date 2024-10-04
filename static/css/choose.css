@@ -1,0 +1,114 @@
+/* Pretendard-Bold 글꼴 정의 */
+@font-face {
+    font-family: 'Pretendard-Bold';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Pretendard-Bold', Arial, sans-serif; /* Pretendard-Regular 적용 */
+    background-color: #f6f6f6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 90vh;
+}
+
+.back-button img {
+    width: 30px;
+    cursor: pointer;
+}
+
+.question-section h1 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    font-family: 'Pretendard-Bold', Arial, sans-serif; /* Pretendard-Regular 적용 */
+}
+
+.question-section p {
+    font-size: 14px;
+    color: #888;
+    font-family: 'Pretendard-Bold', Arial, sans-serif; /* Pretendard-Regular 적용 */
+}
+
+.answer-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.answer {
+    display: flex;
+    align-items: center;
+    border: 2px solid #ddd; /* 테두리 두께 증가 */
+    border-radius: 10px; /* 테두리 반경 조정 */
+    padding: 20px; /* 패딩 증가 */
+    cursor: pointer;
+    transition: border-color 0.3s, background-color 0.3s;
+    height: 100px; /* 답변 세로 길이 설정 */
+    font-family: 'Pretendard-Bold', Arial, sans-serif; /* Pretendard-Regular 적용 */
+}
+
+.answer input[type="radio"] {
+    margin-right: 15px; /* 라디오 버튼과 텍스트 간격 조정 */
+    accent-color: #5186D4; /* 색상 변경 */
+}
+
+.answer:hover {
+    border-color: #5186D4;
+    background-color: #f0f4ff; /* 호버 시 배경색 추가 */
+}
+
+.answer input[type="radio"]:checked + span {
+    color: #5186D4; /* 선택된 항목의 텍스트 색상 변경 */
+}
+
+.next-button:active {
+    background-color: #3b6dc6; /* 활성화 색상 조정 */
+}
+
+.next-button {
+    width: 80%; /* 버튼 너비 유지 */
+    padding: 15px 0;
+    background-color: #5186D4;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    margin: 10px auto; /* 상하 여백 10px, 좌우 여백 자동 */
+    transition: background-color 0.3s, color 0.3s;
+    height: 50px;
+    border: 1px solid #5186D4;
+    text-align: center;
+    display: block; /* 블록 요소로 설정하여 가운데 정렬 보장 */
+    font-family: 'Pretendard-Bold', Arial, sans-serif; /* Pretendard-Regular 적용 */
+}
+
+.next-button:hover {
+    background-color: white;
+    color: #5186D4;
+    border: 1px solid #5186D4;
+}

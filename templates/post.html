@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Post</title>
+    <link rel="icon" href="{{ url_for('static', filename='image/icon.png') }}" type="image/x-icon">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/myPostDetail.css') }}" />
+</head>
+<body>
+    <main class="container">
+        <header>
+            <a href="javascript:void(0);" onclick="goBack()">
+                <img class="back-return" src="{{ url_for('static', filename='image/back-arrow.png') }}" alt="뒤로가기" />
+            </a>
+        </header>
+
+        <div class="post">
+            <div class="post-header">
+                <div class="profile">
+                    <img src="{{ post.profile_image }}" alt="프로필 이미지" class="profile-img">
+                    <span class="username">{{ post.nickname }}</span>
+                </div>
+            </div>
+          
+
+            <div class="post-image">
+                <img src="data:image/jpeg;base64,{{ post.image_data }}" alt="{{ post.image_filename }}" class="image-content">
+            </div>
+
+            <div class="post-footer">
+                <div class="tags">
+                  <span class="tag">#{{ post['tags']['age'] }}</span>
+                  <span class="tag">#{{ post['tags']['gender'] }}</span>
+                  <span class="tag">#{{ post['tags']['travel_type'] }}</span>
+                  <span class="tag">#{{ post['tags']['region'] }}</span>
+                  <span class="tag">#{{ post['tags']['cost'] }}</span>
+                  <span class="tag">#{{ post['tags']['relationship'] }}</span>
+                  <span class="tag">#{{ post['tags']['during'] }}</span>
+              </div>
+
+            </div>
+
+            <!-- 좋아요 및 저장 버튼 -->
+            <div class="post-actions">
+                <span class="like-button-space">
+                    <span class="post-icon">
+                        <img id="like-button" class="like-button" src="" alt="좋아요" onclick="likePost('{{post._id}}')">
+                    </span>
+                    <span id="like-count">{{post.likes or 0}}</span>
+                </span>
+                <span class="post-save-icon">
+                    <img
+                      class="stored-button"
+                      src=""
+                      alt="게시물저장아이콘"
+                      onclick="savePost('{{ post._id }}')"
+                    />
+                </span>
+            </div>
+            <!-- 게시물 내용 -->
+            <span class="content">{{ post['content'] }}</span>
+
+            <!-- 댓글 섹션 -->
+            <div class="comments-section">
+                <!-- 댓글 입력 폼 -->
+                <form action="{{ url_for('add_comment', post_id=post._id) }}" method="POST" class="comment-form">
+                    <textarea name="comment" placeholder="댓글을 입력하세요..." required></textarea>
+                    <button type="submit" style="font-family: 'Pretendard-Bold';">댓글달기</button>
+                </form>
+
+                <!-- 기존 댓글 목록 -->
+                <div class="existing-comments">
+                    {% for comment in post.comments %}
+                    <div class="comment">
+                        <span class="comment-user">{{ comment.nickname }}</span>
+                        <p class="comment-text">{{ comment.text }}</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+    </main>
+
+    <footer>
+        <!-- Footer structure -->
+    </footer>
+
+    <script>
+        
+        function goBack() {
+            const referrer = document.referrer;
+            if (referrer) {
+                window.location.href = referrer;  // 이전 페이지로 이동
+            } else {
+                window.history.back();  // referrer가 없으면 기본 뒤로가기 동작
+            }
+        }
+        document.addEventListener("DOMContentLoaded", function () {
+            const likeButton = document.getElementById("like-button");
+            const likedByUser = "{{ 'true' if post.liked_by_user else 'false' }}";
+            
+            // 좋아요 버튼 이미지 설정
+            if (likedByUser === 'true') {
+                likeButton.src = "{{ url_for('static', filename='image/like_clicked.png') }}";
+            } else {
+                likeButton.src = "{{ url_for('static', filename='image/like.png') }}";
+            }
+
+            const saveButton = document.querySelector(".stored-button");
+            const savedByUser = "{{ 'true' if saved_by_user else 'false' }}";
+
+            // 저장 버튼 이미지 설정
+            if (savedByUser === 'true') {
+                saveButton.src = "{{ url_for('static', filename='image/stored.png') }}";
+            } else {
+                saveButton.src = "{{ url_for('static', filename='image/store.png') }}";
+            }
+        });
+
+        function likePost(postId) {
+            const likeButton = document.getElementById("like-button");
+            const likeCount = document.getElementById("like-count");
+            const userId = "{{ user_id }}";  // 현재 로그인된 사용자 ID
+
+            fetch(`/like/${postId}`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ user_id: userId }),
+            })
+            .then((response) => response.json())
+            .then((data) => {
+                if (data.likes !== undefined) {
+                    // 좋아요 수 업데이트
+                    likeCount.textContent = data.likes;
+                    if (data.liked_by_user) {
+                        likeButton.src = "{{ url_for('static', filename='image/like_clicked.png') }}";
+                    } else {
+                        likeButton.src = "{{ url_for('static', filename='image/like.png') }}";
+                    }
+                } else {
+                    alert("좋아요 업데이트 중 오류가 발생했습니다.");
+                }
+            })
+            .catch((error) => {
+                console.error("Error:", error);
+            });
+        }
+
+        function savePost(postId) {
+            fetch(`/save_post/${postId}`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            })
+            .then((response) => response.json())
+            .then((data) => {
+                if (data.saved !== undefined) {
+                    const saveButton = document.querySelector(".stored-button");
+                    if (data.saved) {
+                        saveButton.src = "{{ url_for('static', filename='image/stored.png') }}";
+                    } else {
+                        saveButton.src = "{{ url_for('static', filename='image/store.png') }}";
+                    }
+                } else {
+                    alert("저장 중 오류가 발생했습니다.");
+                }
+            })
+            .catch((error) => {
+                console.error("Error:", error);
+            });
+        }
+
+        // 댓글 추가 기능
+        document.addEventListener("DOMContentLoaded", function () {
+            const commentForm = document.querySelector('.comment-form');
+            
+            commentForm.addEventListener('submit', function (event) {
+                event.preventDefault(); // 기본 폼 제출 방지
+
+                const formData = new FormData(commentForm);
+                const commentText = formData.get('comment');
+                const postId = "{{ post._id }}";
+
+                fetch(`/add_comment/${postId}`, {
+                    method: "POST",
+                    body: new URLSearchParams(formData),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        const newComment = data.comment;
+                        
+                        // 새로운 댓글 요소 생성
+                        const commentElement = document.createElement('div');
+                        commentElement.classList.add('comment');
+                        commentElement.innerHTML = `
+                            <span class="comment-user">${newComment.nickname}</span>
+                            <p class="comment-text">${newComment.text}</p>
+                        `;
+                        
+                        // 댓글 목록에 추가
+                        document.querySelector('.existing-comments').appendChild(commentElement);
+
+                        // 입력 필드 초기화
+                        commentForm.reset();
+                    } else {
+                        alert("댓글 추가 중 오류가 발생했습니다.");
+                    }
+                })
+                .catch(error => {
+                    console.error("Error:", error);
+                    alert("댓글 추가 중 오류가 발생했습니다.");
+                });
+            });
+        });
+    </script>
+</body>
+</html>

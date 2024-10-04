@@ -1,0 +1,667 @@
+/* Import the Pretendard-Regular font */
+@font-face {
+    font-family: 'Pretendard-Bold';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+}
+
+/* 공통 스타일 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Pretendard-Bold', Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    padding: 0;
+    text-align: center;
+    font-weight: bold;
+    overflow: auto; /* Allows body to scroll */
+    width: 100%;
+    min-height: 100vh; /* Minimum height to cover full viewport */
+}
+
+.container {
+    
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    font-weight: bold;
+    margin-top: 20px; /* Added margin for spacing from top */
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Aligns profile to the left */
+    width: 100%; /* Takes full width to maintain alignment */
+    position: relative;
+}
+
+.recommended-posts h2 {
+    text-align: left; /* Aligns heading to the left */
+}
+
+footer {
+    position: static; /* Changed from fixed to static to move with content */
+    width: auto; /* Adjusts width to content inside */
+}
+
+.profile-image {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.check {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* 탭 메뉴 스타일 */
+.tab-menu {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+}
+
+.tab {
+    background-color: #ffffff;
+    border: 1px solid #ffffff;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.9em;
+    cursor: pointer;
+    color: black;
+    transition: box-shadow 0.3s ease; /* Optional: Add transition for smooth shadow effect */
+    font-weight: bold; /* Ensure boldness in tabs */
+}
+
+.tab.active {
+    background-color: #ffffff;
+    color: #3753FF;
+    box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.1); /* Drop shadow added */
+    font-weight: bold; /* Ensure boldness in active tab */
+}
+
+
+.image-placeholder {
+    background-color: #ddd;
+    color: #999;
+    font-size: 1em;
+    height: 100px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.title {
+    margin-top: 5px;
+    font-size: 0.9em;
+    color: #333;
+}
+
+
+
+.recommended-posts h2 {
+    font-size: 1em;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.post-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.post-item {
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+    font-weight: bold; /* Ensure boldness in post items */
+}
+
+.post-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.post-author {
+    font-size: 0.9em;
+    font-weight: bold;
+}
+
+.post-time {
+    font-size: 0.8em;
+    color: #888;
+}
+
+.post-footer {
+    margin-top: 5px;
+    font-size: 0.8em;
+    color: #888;
+    font-weight: bold; /* Ensure boldness in post footer */
+}
+
+
+/* 하단 네비게이션 바 스타일 */
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    border-top: 1px solid #ddd;
+    padding: 10px 0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    max-width: 360px;
+    margin: 0 auto;
+    padding-bottom: 5px;
+    font-weight: bold; /* Ensure boldness in footer */
+}
+
+.footer-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    color: #888;
+    font-size: 0.5em;
+    text-align: center;
+    margin: 0 20px;
+    font-weight: bold; /* Ensure boldness in footer menu */
+}
+
+.footer-menu span {
+    font-size: 0.8em;
+    margin-top: 3px;
+    font-weight: bold;
+}
+
+.footer-menu-icon {
+    height: 25px;
+    width: 25px;
+}
+
+
+
+
+.post {
+    width: 50%; /* 두 개씩 나열하기 위해 50%로 설정 */
+    box-sizing: border-box; /* 패딩 및 보더를 포함하도록 설정 */
+    
+}
+/* 공통 스타일 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 사용자명과 검색창의 줄 분리 */
+.header {
+    display: flex;
+    flex-direction: column; /* 세로 방향으로 배치 */
+    align-items: center;
+    width: 100%;
+}
+
+
+.username {
+    font-weight: bold;
+    font-size: 1em;
+}
+
+
+
+.post-card:nth-child(odd) {
+    margin-right: 10px; /* 오른쪽 카드와의 간격 */
+}
+/* 헤더 스타일 */
+.header {
+    display: flex;
+    flex-direction: column; /* Change to column to stack elements vertically */
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.popular-posts h2 {
+    font-size: 1em;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: left; /* Align the heading to the left */
+    width: 100%; /* Full width to align properly */
+}
+
+.popular-posts a {
+    margin-top: 10px;
+    display: flex; /* Adding flex to manage child layout */
+    flex-wrap: wrap; /* Allow wrapping for items */
+    justify-content: space-between; /* Space between posts */
+    text-decoration: none;
+    color: #000;
+}
+
+
+
+.post-card {
+    flex: 0 0 48%; /* Flex basis to almost half to fit 2 items per line */
+    background-color: white;
+    padding: 10px;
+ 
+    border-radius: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0px 2px 4px rgba(55, 83, 255, 0.1); /* Optional shadow for better visibility */
+    font-weight: bold; /* Ensure boldness in post cards */
+}
+.recommended-posts {
+    /* overflow-y: scroll; Remove this line */
+    /* height: 200px; Remove this line */
+    margin-top: 10px;
+}
+
+body {
+    overflow: auto; /* This should be already set as per your existing CSS */
+}
+
+
+
+
+.search-bar-wrapper {
+    position: relative;
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px; /* Add margin below the search bar */
+}
+
+.search-bar {
+    width: 100%;
+    padding: 12px 20px;
+    border: 2px solid #d1d8e0; /* Softer border color */
+    border-radius: 30px; /* More rounded corners */
+    font-size: 1em;
+    background-color: #ffffff; /* Light background for the input */
+    color: #333; /* Darker text for readability */
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); /* Subtle shadow for depth */
+    outline: none;
+}
+
+.search-bar:focus {
+    border-color: #5186D4; /* Blue border on focus for consistency */
+    background-color: #fff; /* Highlight background on focus */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Slightly more prominent shadow on focus */
+}
+
+.search-bar::placeholder {
+    color: #888; /* Softer color for placeholder text */
+}
+
+a.search-bar-wrapper {
+    display: flex;  /* Use flexbox to align the image and text horizontally */
+    align-items: center;  /* Vertically center the text with the image */
+    text-decoration: none;  /* Remove underline from the link */
+    width: auto;  /* Adjust the width as needed */
+    padding: 10px;  /* Add padding for clickable area */
+    background-color: #fff;  /* Optional: Add background color */
+    border: 1px solid #ddd;  /* Optional: Add a border to match the previous search bar */
+    border-radius: 20px;  /* Optional: Rounded edges */
+}
+
+.search-icon {
+    width: 20px;  /* Adjust the size of the image */
+    height: 20px;  /* Adjust the size of the image */
+    margin-right: 10px;  /* Add space between the image and the text */
+}
+
+.search-text {
+    font-size: 1em;  /* Adjust the font size */
+    color: #333;  /* Optional: Set text color */
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+    overflow: auto;
+    background-color: #f9f9fb;  /* Light grey background for the entire page */
+    color: #333; /* Dark grey text for better readability */
+}
+
+.container {
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff; /* White background for the container */
+    padding-bottom: 100px;
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.username {
+    font-size: 1.2em; /* Larger font size for username */
+}
+
+
+
+.clear-button {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 1.2em;
+}
+
+
+.post-card, .post-item {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.05);
+    margin-bottom: 15px; /* Increased bottom margin for separation */
+    transition: box-shadow 0.3s; /* Smooth shadow effect on hover */
+}
+
+.post-card:hover, .post-item:hover {
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Darker shadow on hover */
+}
+
+.footer-menu-icon {
+    height: 25px;
+    width: 25px;
+}
+
+footer {
+    background-color: #ffffff;
+    border-top: 2px solid #eee; /* Slightly darker top border for definition */
+    padding: 15px 0;
+}
+
+.popular-posts h2 {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 20px;
+    
+}
+
+.post-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: space-between;
+    
+}
+.post-list-hot{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 한 줄에 두 개의 카드 */
+    gap: 10px; /* 카드 사이의 간격 */
+    width: 100%; /* 카드들이 컨테이너에 맞춰 확장 */
+}
+.post-card {
+    flex: 0 0 48%; /* Adjusts the width to fit two cards per row */
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0px 2px 4px rgba(55, 83, 255, 0.1); /* Optional shadow for better visibility */
+    font-weight: bold; /* Ensure boldness in post cards */
+    transition: box-shadow 0.3s ease;
+    
+}
+
+.post-card:hover {
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Darker shadow on hover */
+}
+
+.image-placeholder {
+    height: 150px;
+    background-color: #eee;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.image-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.post-author {
+    margin-top: 10px;
+    font-size: 0.9em;
+    color: #555;
+}
+
+.post-card:nth-child(odd) {
+    margin-right: 0; /* Keep the margin as per original layout */
+}
+/* Specific styling for 인기 게시물 using the custom class */
+.custom-post-link {
+    display: block;
+    text-decoration: none; /* Remove underline */
+    color: inherit; /* Ensure the text color stays the same */
+    width: 100%; /* Ensure the anchor takes up full width */
+    height: 100%; /* Ensure the anchor takes up full height */
+}
+
+.custom-post-card {
+    position: relative;
+    padding: 10px;
+    border: 1px solid #e1e1e1;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    transition: transform 0.3s ease; /* Smooth transition for hover effect */
+}
+
+/* Ensure image placeholder inside custom-post-card behaves properly */
+.custom-post-card .image-placeholder img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+/* Hover effect on the custom-post-card */
+.custom-post-card:hover {
+    transform: scale(1.05); /* Slightly enlarge the card on hover */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Custom layout for the 인기 게시물 */
+.custom-post-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.custom-post-list .custom-post-card {
+    width: calc(50% - 10px); /* Two posts per row */
+    box-sizing: border-box;
+}
+
+/* Style for post-author and region text */
+.custom-post-card .post-author, .custom-post-card span {
+    display: block;
+    font-size: 14px;
+    margin-top: 5px;
+}
+h2 {
+    font-size: 1.2em;
+    color: #333;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    text-align: left;
+}
+/* 모달을 기본적으로 숨기기 */
+.modal {
+    display: none; /* 페이지가 로드될 때 모달이 숨겨지도록 설정 */
+    position: fixed; /* 페이지 전체에서 모달을 중앙에 고정하기 */
+    z-index: 1; /* 다른 요소들 위에 표시하기 */
+    left: 0;
+    top: 0;
+    width: 100%; /* 전체 화면 너비 */
+    height: 100%; /* 전체 화면 높이 */
+    overflow: auto; /* 화면 밖으로 내용이 넘칠 경우 스크롤 */
+    background-color: rgba(0, 0, 0, 0.4); /* 배경 어둡게 처리 */
+}
+
+/* 모달 내용 스타일링 */
+.modal-content {
+    background-color: #fff;
+    margin: 15% auto; /* 화면 중앙에 모달을 배치 */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* 모달의 너비 설정 */
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+/* Remove underline from all links */
+a {
+    text-decoration: none;
+}
+.bottom {
+    margin-bottom: 120px;
+}
+/* Recommended Post List */
+.recommended-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.recommended-post-card {
+    background-color: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.recommended-post-card .post-header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+}
+
+.recommended-post-card .profile-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.recommended-post-card .username {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #333;
+    white-space: nowrap;
+}
+
+.recommended-post-card .image-placeholder {
+    width: 100%;
+    padding-top: 100%;
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.recommended-post-card .image-placeholder img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.recommended-post-card .post-hashtags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.recommended-post-card .hashtag {
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-size: 0.9em;
+    color: #5186D4;
+}
+
+.search-results h2 {
+    font-size: 1.5em; /* Larger, elegant size */
+    font-weight: 600; /* Slightly less bold for a smoother look */
+    color: #333; /* Darker color for a cleaner, modern feel */
+    text-align: center; /* Center align the text */
+    margin-bottom: 30px; /* Increased margin for better spacing */
+    position: relative; /* Allow for decorative elements */
+    padding-bottom: 10px;
+}
+
+/* Add a gradient underline for a sleek, modern look */
+.search-results h2::after {
+    content: '';
+    width: 50px;
+    height: 4px;
+    background: linear-gradient(90deg, #5186D4, #5186D4);
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 2px;
+}

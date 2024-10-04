@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="static/css/login.css">
+    <link rel="icon" href="{{ url_for('static', filename='image/icon.png') }}" type="image/x-icon">
+    <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+    <script>
+        Kakao.init("e91251bd1c93dc7bf8b02111289d954f");  // Replace with your actual Kakao JavaScript key
+        console.log(Kakao.isInitialized());
+    </script>
+</head>
+<body>
+    <div class="login-container">
+        <img src="static/image/logo.png" alt="Logo" class="logo">
+
+        <div class="input-container">
+            <form method="POST" action="{{ url_for('login') }}">
+                <input type="text" name="user_id" placeholder="아이디" class="login-input" required>
+                <input type="password" name="password" placeholder="비밀번호" class="login-input" required>
+                <!-- 로그인 버튼 -->
+                <button type="submit" class="login-button">로그인</button>
+            </form>
+        </div>
+
+        <div class="find-id-password">
+            <a href="{{ url_for('find') }}">아이디/비밀번호 찾기</a>
+        </div>
+
+
+        <div class="social-login">
+            <div class="social-icon kakao">
+                <a href="#" onclick="loginWithKakao()">
+                    <img src="static/image/kakao.png" alt="Kakao Login">
+                </a>
+            </div>
+
+            <div class="social-icon naver">
+                <a href="{{ url_for('naver_login') }}">
+                    <img src="static/image/naver.png" alt="Naver Login">
+                </a>
+            </div>
+
+            <div class="social-icon google">
+                <a href="{{ url_for('google_login') }}">
+                    <img src="static/image/google.png" alt="Google Login">
+                </a>
+            </div>
+        </div>
+
+        <div class="signup-link">
+            <span>회원이 아니신가요? </span><a href="{{ url_for('make_id') }}">회원가입하기</a>
+        </div>
+    </div>
+
+    <script>
+        function loginWithKakao() {
+            Kakao.Auth.login({
+                success: function(authObj) {
+                    console.log(authObj);
+                    Kakao.Auth.setAccessToken(authObj.access_token);
+                    getInfo(); // Fetch user info after login
+                },
+                fail: function(err) {
+                    console.error(err);
+                    alert("카카오 로그인 실패");
+                }
+            });
+        }
+
+        function getInfo() {
+            Kakao.API.request({
+                url: '/v2/user/me',
+                success: function(res) {
+                    var user_data = {
+                        kakao_id: res.id,
+                        nickname: res.kakao_account.profile.nickname
+                    };
+
+                    // Send user data to the server
+                    fetch('/kakao/register', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(user_data)
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            // Redirect to the next page (make_name)
+                            window.location.href = data.redirect_url;  // Use the URL returned by the server
+                        } else {
+                            alert('사용자 정보 저장 실패');
+                        }
+                    })
+                    .catch(error => console.error('Error:', error));
+                },
+                fail: function(error) {
+                    alert("카카오 로그인 실패" + JSON.stringify(error));
+                }
+            });
+        }
+
+        
+    </script>
+</body>

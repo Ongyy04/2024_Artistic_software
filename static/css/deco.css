@@ -1,0 +1,245 @@
+
+
+/* Import the Pretendard-Regular font */
+@font-face {
+    font-family: 'Pretendard-Bold';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+}
+
+/* 공통 스타일 (Common styles for the whole page) */
+* {
+    font-family: 'Pretendard-Bold', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Pretendard-Bold', Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+    overflow: auto; /* Allows body to scroll */
+    width: 100%;
+    min-height: 100vh; /* Minimum height to cover full viewport */
+    
+}
+
+.container {
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    font-weight: bold;
+    margin-top: 20px; /* Added margin for spacing from top */
+   
+}
+
+/* Header */
+/* Header */
+.character-image-section .box {
+    height: 300px;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center;
+    object-fit: cover;
+}
+
+.image {
+    width: 100%;
+    height: 100%; /* 원하는 높이로 설정 */
+    background-image: url(./image/character/캐릭터.png);
+    background-position: center;
+    background-size: cover;
+}
+
+button {
+    margin-top: 10px;
+    padding: 5px 10px;
+    font-size: 14px;
+    color: #000000;
+    background-color: #ffffff;
+    border: 1px solid #aaa;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+button:hover {
+    background-color: #5186D4;
+    color: #ffffff;
+    border: 1px solid #5186D4;
+}
+
+.character-image-section {
+    margin-bottom: 20px;
+}
+
+.straw {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+
+/* Footer */
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    border-top: 1px solid #ddd;
+    padding: 10px 0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    max-width: 360px;
+    margin: 0 auto;
+    padding-bottom: 5px;
+}
+
+.footer-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    color: #888;
+    font-size: 0.5em;
+    text-align: center;
+    margin: 0 20px;
+}
+
+.footer-menu span {
+    font-size: 0.8em;
+    margin-top: 3px;
+    font-weight: bold;
+}
+
+.footer-menu-icon {
+    height: 25px;
+    width: 25px;
+}
+/* Common styles for item-image (set as square) */
+.item-image {
+    height: 50px;
+    padding-top: 100%; /* This ensures the box maintains a square aspect ratio */
+    background-color: #f2f2f2;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-bottom: 10px;
+}
+
+.buttons-section {
+    margin-bottom: 50px;
+}
+/* Styling for accessory buttons */
+.reset-button,
+.apply-button {
+    width: 48%;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.reset-button {
+    background-color: #F3F5FF;
+    color: #000;
+    border: 1px solid #ffffff;
+}
+
+.apply-button {
+    background-color: #5186D4;
+    color: #fff;
+    border: 1px solid #ffffff;
+}
+.reset-button:hover {
+    background-color: white;
+    color: #3753FF;
+    border: 1px solid #3753FF;
+}
+
+.apply-button:hover {
+    background-color: white;
+    color: #3753FF;
+    border: 1px solid #3753FF;
+}
+/* Styling for selection buttons */
+button[class^="hat"] {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ffffff;
+    border-radius: 8px;
+    background-color: #F3F5FF;
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-weight: bold;
+}
+
+/* Hover effect for selection buttons */
+button[class^="hat"]:hover {
+    background-color: white;
+    color: #3753FF;
+    border: 1px solid #3753FF;
+}
+
+/* Adding margin to buttons for spacing */
+.item-box button {
+    font-family: 'Pretendard-Bold';
+    margin-top: 10px;
+}
+.character-image-section .box {
+    height: 300px;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 10px;
+    position: relative; /* This allows the button to be positioned absolutely */
+}
+
+.character-image-section .image {
+    width: 100%;
+    height: 100%; /* 원하는 높이로 설정 */
+    background-position: center;
+    
+    background-size: contain;
+    background-repeat: no-repeat;
+    
+}
+
+.character-image-section .shower {
+    position: absolute;
+    right: 10px; /* 오른쪽에 붙이기 */
+    bottom: 10px; /* 박스 하단에서 약간 띄우기 */
+    background-color: #3753FF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.character-image-section .shower:hover {
+    background-color: #2d45c3;
+}
+
+.back-button {
+    width: 25px;
+    height: 25px;
+}

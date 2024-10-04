@@ -1,0 +1,294 @@
+/* Pretendard-Regular 폰트 선언 */
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+/* Import the Pretendard-Regular font */
+@font-face {
+    font-family: 'Pretendard-Bold';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Pretendard-Bold';
+    background-color: #f6f6f6;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100vh;
+    padding-top: 20px;
+}
+
+.container {
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    font-weight: bold;
+    justify-content: flex-start;
+    padding-bottom: 100px;
+    font-family: 'Pretendard-Bold';
+}
+
+.header {
+    text-align: left;
+    width: 100%;
+    margin-bottom: 20px;
+    font-family: 'Pretendard-Bold';
+}
+
+.back-button img {
+    width: 24px;
+    height: 24px;
+}
+
+.title {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 10px 0 10px;
+}
+
+.subtitle {
+    font-size: 14px;
+    color: #6f6f6f;
+}
+
+.main-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 100%;
+    padding-top: 30px;
+}
+
+.badge-selection {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.badge-option {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 15px;
+    transition: border-color 0.3s ease;
+    cursor: pointer;
+}
+
+.badge-option:hover {
+    border-color: #5186d4;
+}
+
+.badge-option.selected {
+    border-color: #5186d4;
+}
+
+.badge-text {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* 모달 스타일 */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 300px;
+    text-align: center;
+}
+
+.modal-image {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.close {
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+}
+
+.next-button {
+    width: 100%;
+    padding: 15px;
+    background-color: #5186d4;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.next-button:hover {
+    background-color: #5185d4;
+}
+
+/* Footer */
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    border-top: 1px solid #ddd;
+    padding: 10px 0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    max-width: 360px;
+    margin: 0 auto;
+    padding-bottom: 5px;
+}
+
+.footer-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    color: #888;
+    font-size: 0.5em;
+    text-align: center;
+    margin: 0 20px;
+}
+
+.footer-menu span {
+    font-size: 0.8em;
+    margin-top: 3px;
+    font-weight: bold;
+}
+
+.footer-menu-icon {
+    height: 25px;
+    width: 25px;
+}
+
+.back-button-modal {
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: #5186d4;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-family: 'Pretendard-Bold';
+}
+
+.back-button-modal:hover {
+    background-color: #5186d4;
+}
+
+/* 모달 내부의 그리드 레이아웃 */
+.badge-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.badge-card {
+    width: 45%; /* 한 줄에 두 개씩 배치되도록 45%로 설정 */
+    text-align: center;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    background-color: white;
+}
+
+.badge-image {
+    width: 100%;
+    height: auto;
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+
+
+/* 모달 관련 기본 스타일 (이미 작성된 코드와 연결) */
+
+
+.back-button-modal {
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: #5186d4;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.back-button-modal:hover {
+    background-color: #5186d4;
+}
+
+.badge-card {
+    width: 45%; /* 한 줄에 두 개씩 배치되도록 45% 설정 */
+    text-align: center;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* 텍스트 스타일 */
+.badge-card p {
+    font-size: 14px;
+    color: #333;
+    font-weight: bold;
+}
+
+
+/* 페이지 배경 및 푸터 흐리게 처리 */
+.modal-open .container, 
+.modal-open footer {
+    filter: blur(5px);
+    pointer-events: none;
+}
+
+/* 모달 관련 기본 스타일 (변경 없음) */
+
+
+.close {
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 24px;
+}

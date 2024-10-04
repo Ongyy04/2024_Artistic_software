@@ -1,0 +1,362 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>여행 기록 공유</title>
+    <link rel="icon" href="{{ url_for('static', filename='image/icon.png') }}" type="image/x-icon">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/write.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="{{ url_for('static',filename='image/write.png') }}" alt="글쓰기아이콘">
+            <h1>글쓰기</h1>
+        </header>
+        <script>
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    alert("{{ messages[0] }}");
+                {% endif %}
+            {% endwith %}
+        </script>
+        <section class="title-section">
+            <form class="inputImg" method="post" enctype="multipart/form-data" action="{{ url_for('upload') }}">
+                <div class="image-upload">
+                    <div class="addImage" id="image-show"></div>
+                    <input id="file-input" type="file" name="file" accept="image/*" onchange="loadFile(this)">
+                </div>
+                <textarea name="content" placeholder="여기에 내용을 입력하세요..."></textarea>
+                
+                <section class="filter-section">
+                    <h3>관심사 설정</h3>
+                    <div class="homeTags">
+                        <button id="age-button" type="button" onclick="openModal('age-modal')">나이대</button>
+                        <input type="hidden" name="age" id="age-input">
+                        <button id="gender-button" type="button" onclick="openModal('gender-modal')">성별</button>
+                        <input type="hidden" name="gender" id="gender-input">
+                        <button id="travel-type-button" type="button" onclick="openModal('travel-type-modal')">여행 유형</button>
+                        <input type="hidden" name="travel_type" id="travel-type-input">
+                    </div>
+                    <div class="tags">
+                        <button id="region-button" type="button" onclick="openModal('region-modal')">지역</button>
+                        <input type="hidden" name="region" id="region-input">
+                        <button id="relationship-button" type="button" onclick="openModal('relationship-modal')">관계</button>
+                        <input type="hidden" name="relationship" id="relationship-input">
+                    </div>
+                    <div class="newTags">
+                        <button id="cost-button" type="button" onclick="openModal('cost-modal')">비용</button>
+                        <input type="hidden" name="cost" id="cost-input">
+                        <button id="during-button" type="button" onclick="openModal('during-modal')">여행 기간</button>
+                        <input type="hidden" name="during" id="during-input">
+                    </div>
+                    <p>당신의 여행에 맞는 관심사를 설정하여 주세요</p>
+                </section>
+        </section>
+        <div class="line"></div>
+        <section class="recommendations">
+            <h3>나도 다녀왔어요</h3>
+            <p style="text-align: center; display: block;" id = "region" >지역을 선택하시면,</p>
+            <p style="text-align: center; display: block;" id = "region1" >관련 게시물이 뜹니다.</p>
+            <div class="recommendation-cards" id="recommendation-cards" style="display: none">
+                <div class="card">
+                    <img class="card-img">
+                    <div class="card-content">
+                        <p class="review"></p>
+                        <p class="location"></p>
+                        <p class="cost"></p>
+                        <p class="author"></p>
+                    </div>
+                </div>
+                <div class="card">  
+                    <img class="card-img">
+                    <div class="card-content">
+                        <p class="review"></p>
+                        <p class="location"></p>
+                        <p class="cost"></p>
+                        <p class="author"></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="actions">
+            <button type="submit" class="upload-btn">글 업로드하기</button>
+        </section>
+        <div class="line"></div>
+        <section class="hashtags">
+            <h3>인기 해시태그</h3>
+            <div class="homeTags">
+                <button type="button">#{{ popular_tags['age'] }}</button>
+                <button type="button">#{{ popular_tags['gender'] }}</button>
+                <button type="button">#{{ popular_tags['travel_type'] }}</button>
+                <button type="button">#{{ popular_tags['region'] }}</button>
+                <button type="button">#{{ popular_tags['relationship'] }}</button>
+                <button type="button">#{{ popular_tags['cost'] }}</button>
+                <button type="button">#{{ popular_tags['during'] }}</button>
+            </div>
+        </section>        
+    </form>
+        <section class="bottom"></section>
+    </div>
+
+    <footer>
+        <div class="footer-menu">
+            <a href="{{ url_for('write') }}" class="post-link">
+                <img class="footer-menu-icon" src="{{ url_for('static', filename='image/write.png') }}" alt="글쓰기아이콘"/>
+            </a>
+            <span>글쓰기</span>
+        </div>
+        <div class="footer-menu">
+            <a href="{{ url_for('save') }}" class="post-link">
+                <img class="footer-menu-icon" src="{{ url_for('static', filename='image/save.png') }}" alt="저장됨아이콘"/>
+            </a>
+            <span>저장됨</span>
+        </div>
+        <div class="footer-menu">
+            <a href="{{ url_for('home_view') }}" class="post-link">
+                <img class="footer-menu-icon" src="{{ url_for('static', filename='image/home.png') }}" alt="홈아이콘"/>
+            </a>
+            <span>홈</span>
+        </div>
+        <div class="footer-menu">
+            <a href="{{ url_for('my') }}" class="post-link">
+                <img class="footer-menu-icon" src="{{ url_for('static', filename='image/my.png') }}" alt="내여행아이콘"/>
+            </a>
+            <span>내 여행</span>
+        </div>
+        <div class="footer-menu">
+            <a href="{{ url_for('setting') }}" class="post-link">
+                <img class="footer-menu-icon" src="{{ url_for('static', filename='image/setting.png') }}" alt="설정아이콘"/>
+            </a>
+            <span>설정</span>
+        </div>
+    </footer>
+    
+    <!-- 모달 영역 시작 -->
+    <div id="age-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('age-modal')">&times;</span>
+            <h2>나이대 선택</h2>
+            <div class="grid-layout" id="aged">
+                <div><label><input type="radio"  name="age-group" value="10대" onclick="selectOption('age-button', '10대', 'age-input')"> 10대</label><br></div>
+                <div><label><input type="radio" name="age-group" value="20대" onclick="selectOption('age-button', '20대', 'age-input')"> 20대</label><br></div>
+                <div><label><input type="radio" name="age-group" value="30대" onclick="selectOption('age-button', '30대', 'age-input')"> 30대</label><br></div>
+                <div><label><input type="radio" name="age-group" value="40대" onclick="selectOption('age-button', '40대', 'age-input')"> 40대</label><br></div>
+                <div><label><input type="radio" name="age-group" value="50대 이상" onclick="selectOption('age-button', '50대 이상', 'age-input')"> 50대 이상</label><br></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="gender-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('gender-modal')">&times;</span>
+            <h2>성별 선택</h2>
+            <div class="grid-layout" id="gendered">
+                <div><label><input type="radio" name="gender-group" value="남성" onclick="selectOption('gender-button', '남성', 'gender-input')"> 남성</label><br></div>
+                <div><label><input type="radio" name="gender-group" value="여성" onclick="selectOption('gender-button', '여성', 'gender-input')"> 여성</label><br></div>
+                <div><label><input type="radio" name="gender-group" value="기타" onclick="selectOption('gender-button', '기타', 'gender-input')"> 기타</label><br></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="travel-type-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('travel-type-modal')">&times;</span>
+            <h2>여행 유형 선택</h2>
+            <div class="grid-layout" id="aged">
+                <div><label><input type="radio" name="travel-group" value="자연 친화형" onclick="selectOption('travel-type-button', '자연 친화형', 'travel-type-input')"> 자연 친화형</label><br></div>
+                <div><label><input type="radio" name="travel-group" value="문화 탐방형" onclick="selectOption('travel-type-button', '문화 탐방형', 'travel-type-input')"> 문화 탐방형</label><br></div>
+                <div><label><input type="radio" name="travel-group" value="휴식과 힐링형" onclick="selectOption('travel-type-button', '휴식 & 힐링형', 'travel-type-input')"> 휴식과 힐링형</label><br></div>
+                <div><label><input type="radio" name="travel-group" value="모험과 액티비티형" onclick="selectOption('travel-type-button', '모험 & 액티비티형', 'travel-type-input')"> 모험과 액티비티형</label><br></div>
+                <div><label><input type="radio" name="travel-group" value="기타" onclick="selectOption('travel-type-button', '기타', 'travel-type-input')"> 기타</label><br></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="region-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('region-modal')">&times;</span>
+            <h2>지역 선택</h2>
+            <div class="grid-layout">
+                <div><button type="button" onclick="openSubRegionModal('asia-modal', 'region-modal')">아시아</button><br></div>
+                <div><button type="button" onclick="openSubRegionModal('europe-modal', 'region-modal')">유럽</button><br></div>
+                <div><button type="button" onclick="openSubRegionModal('africa-modal', 'region-modal')">아프리카</button><br></div>
+                <div><button type="button" onclick="openSubRegionModal('north-america-modal', 'region-modal')">북미</button><br></div>
+                <div><button type="button" onclick="openSubRegionModal('south-america-modal', 'region-modal')">남미</button><br></div>
+                <div><button type="button" onclick="openSubRegionModal('Oceania-modal', 'region-modal')">오세아니아</button><br></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 아시아 세분화 모달 -->
+    <div id="asia-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('asia-modal')">&times;</span>
+            <h2>아시아 세부 지역 선택</h2>
+            <div class="grid-layout">
+                <div><button type="button" onclick="openSubRegionModal('korea-modal', 'asia-modal')">한국</button><br></div>
+                <div><label><input type="radio" name="region-group" value="아시아 - 중국" onclick="selectOption('region-button', '아시아 - 중국', 'region-input')"> 중국</label><br></div>
+                <div><label><input type="radio" name="region-group" value="아시아 - 일본" onclick="selectOption('region-button', '아시아 - 일본', 'region-input')"> 일본</label><br></div>
+                <div><label><input type="radio" name="region-group" value="아시아 - 태국" onclick="selectOption('region-button', '아시아 - 태국', 'region-input')"> 태국</label><br></div>
+                <div><label><input type="radio" name="region-group" value="아시아 - 베트남" onclick="selectOption('region-button', '아시아 - 베트남', 'region-input')"> 베트남</label><br></div>
+                <div><label><input type="radio" name="region-group" value="아시아 - 기타 지역" onclick="selectOption('region-button', '아시아 - 기타 지역', 'region-input')"> 기타</label><br></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="korea-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('korea-modal')">&times;</span>
+            <h2>한국 세부 지역 선택</h2>
+            <div class="grid-layout">
+                <div><label><input type="radio" name="region-group" value="아시아 - 한국 - 서울" onclick="selectOption('region-button', '아시아 - 한국 - 서울', 'region-input')"> 서울</label><br></div>
+                <div><label><input type="radio" name="region-group" value="아시아 - 한국 - 부산" onclick="selectOption('region-button', '아시아 - 한국 - 부산', 'region-input')"> 부산</label><br></div>
+                <div><label><input type="radio" name="region-group" value="아시아 - 한국 - 대구" onclick="selectOption('region-button', '아시아 - 한국 - 대구', 'region-input')"> 대구</label><br></div>
+                <div><label><input type="radio" name="region-group" value="아시아 - 한국 - 여수" onclick="selectOption('region-button', '아시아 - 한국 - 여수', 'region-input')"> 여수</label><br></div>
+                <div><label><input type="radio" name="region-group" value="아시아 - 한국 - 인천" onclick="selectOption('region-button', '아시아 - 한국 - 인천', 'region-input')"> 인천</label><br></div>
+                <div><label><input type="radio" name="region-group" value="아시아 - 한국 - 기타 지역" onclick="selectOption('region-button', '아시아 - 한국 - 기타 지역', 'region-input')"> 기타</label><br></div>
+            </div>  
+        </div>
+    </div>
+
+    <!-- 유럽 세분화 모달 -->
+    <div id="europe-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('europe-modal')">&times;</span>
+            <h2>유럽 세부 지역 선택</h2>
+            <div class="grid-layout">
+                <div><label><input type="radio" name="region-group" value="유럽 - 프랑스" onclick="selectOption('region-button', '유럽 - 프랑스', 'region-input')"> 프랑스</label><br></div>
+                <div><label><input type="radio" name="region-group" value="유럽 - 영국" onclick="selectOption('region-button', '유럽 - 영국', 'region-input')"> 영국</label><br></div>
+                <div><label><input type="radio" name="region-group" value="유럽 - 이탈리아" onclick="selectOption('region-button', '유럽 - 이탈리아', 'region-input')"> 이탈리아</label><br></div>
+                <div><label><input type="radio" name="region-group" value="유럽 - 스페인" onclick="selectOption('region-button', '유럽 - 스페인', 'region-input')"> 스페인</label><br></div>
+                <div><label><input type="radio" name="region-group" value="유럽 - 스위스" onclick="selectOption('region-button', '유럽 - 스위스', 'region-input')"> 스위스</label><br></div>
+                <div><label><input type="radio" name="region-group" value="유럽 - 기타 지역" onclick="selectOption('region-button', '유럽 - 기타 지역', 'region-input')"> 기타</label><br></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 아프리카 세분화 모달 -->
+    <div id="africa-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('africa-modal')">&times;</span>
+            <h2>아프리카 세부 지역 선택</h2>
+            <div class="grid-layout">
+                <div><label><input type="radio" name="region-group" value="아프리카 - 남아공" onclick="selectOption('region-button', '아프리카 - 남아공', 'region-input')"> 남아공</label><br></div>
+                <div><label><input type="radio" name="region-group" value="아프리카 - 우간다" onclick="selectOption('region-button', '아프리카 - 우간다', 'region-input')"> 우간다</label><br></div>
+                <div><label><input type="radio" name="region-group" value="아프리카 - 콩고" onclick="selectOption('region-button', '아프리카 - 콩고', 'region-input')"> 콩고</label><br></div>
+                <div><label><input type="radio" name="region-group" value="아프리카 - 말리" onclick="selectOption('region-button', '아프리카 - 말리', 'region-input')"> 말리</label><br></div>
+                <div><label><input type="radio" name="region-group" value="아프리카 - 가나" onclick="selectOption('region-button', '아프리카 - 가나', 'region-input')"> 가나</label><br></div>
+                <div><label><input type="radio" name="region-group" value="아프리카 - 기타 지역" onclick="selectOption('region-button', '아프리카 - 기타 지역', 'region-input')"> 기타</label><br></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 북미 세분화 모달 -->
+    <div id="north-america-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('north-america-modal')">&times;</span>
+            <h2>북미 세부 지역 선택</h2>
+            <div class="grid-layout">
+                <div><label><input type="radio" name="region-group" value="북미 - 미국" onclick="selectOption('region-button', '북미 - 미국', 'region-input')"> 미국</label><br></div>
+                <div><label><input type="radio" name="region-group" value="북미 - 캐나다" onclick="selectOption('region-button', '북미 - 캐나다', 'region-input')"> 캐나다</label><br></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 남미 세분화 모달 -->
+    <div id="south-america-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('south-america-modal')">&times;</span>
+            <h2>남미 세부 지역 선택</h2>
+            <div class="grid-layout" id="aged">
+                <div><label><input type="radio" name="region-group" value="남미 - 아르헨티나" onclick="selectOption('region-button', '남미 - 아르헨티나', 'region-input')"> 아르헨티나</label><br></div>
+                <div><label><input type="radio" name="region-group" value="남미 - 멕시코" onclick="selectOption('region-button', '남미 - 멕시코', 'region-input')"> 멕시코</label><br></div>
+                <div><label><input type="radio" name="region-group" value="남미 - 브라질" onclick="selectOption('region-button', '남미 - 브라질', 'region-input')"> 브라질</label><br></div>
+                <div><label><input type="radio" name="region-group" value="남미 - 자메이카" onclick="selectOption('region-button', '남미 - 자메이카', 'region-input')"> 자메이카</label><br></div>
+                <div><label><input type="radio" name="region-group" value="남미 - 기타 지역" onclick="selectOption('region-button', '남미 - 기타 지역', 'region-input')"> 기타</label><br></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="Oceania-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('Oceania-modal-modal')">&times;</span>
+            <h2>오세아니아 세부 지역 선택</h2>
+            <div class="grid-layout" id="gendered">
+                <div><label><input type="radio" name="region-group" value="오세아니아 - 호주" onclick="selectOption('region-button', '오세아니아 - 호주', 'region-input')"> 호주</label><br></div>
+                <div><label><input type="radio" name="region-group" value="오세아니아 - 뉴질랜드" onclick="selectOption('region-button', '오세아니아 - 뉴질랜드', 'region-input')"> 뉴질랜드</label><br></div>
+                <div><label><input type="radio" name="region-group" value="오세아니아 - 기타 지역" onclick="selectOption('region-button', '오세아니아 - 기타 지역', 'region-input')"> 기타</label><br></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 비용 모달 -->
+    <div id="cost-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('cost-modal')">&times;</span>
+            <h2>비용 선택</h2>
+            <div class="grid-layout">
+                <div><label><input type="radio" name="cost-group" value="0-10만원" onclick="selectOption('cost-button', '0-10만원', 'cost-input')"> 0-10만원</label><br></div>
+                <div><label><input type="radio" name="cost-group" value="10만원-50만원" onclick="selectOption('cost-button', '10만원-50만원', 'cost-input')"> 10만원-50만원</label><br></div>
+                <div><label><input type="radio" name="cost-group" value="50만원-100만원" onclick="selectOption('cost-button', '50만원-100만원', 'cost-input')"> 50만원-100만원</label><br></div>
+                <div><label><input type="radio" name="cost-group" value="100만원-500만원" onclick="selectOption('cost-button', '100만원-500만원', 'cost-input')"> 100만원-500만원</label><br></div>
+                <div><label><input type="radio" name="cost-group" value="500만원-1000만원" onclick="selectOption('cost-button', '500만원-1000만원', 'cost-input')"> 500만원-1000만원</label><br></div>
+                <div><label><input type="radio" name="cost-group" value="기타" onclick="selectOption('cost-button', '기타', 'cost-input')"> 기타</label><br></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 관계 모달 -->
+    <div id="relationship-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('relationship-modal')">&times;</span>
+            <h2>관계 선택</h2>
+            <div class="grid-layout">
+                <div><label><input type="radio" name="relationship-group" value="혼자" onclick="selectOption('relationship-button', '혼자', 'relationship-input')"> 혼자</label><br></div>
+                <div><label><input type="radio" name="relationship-group" value="친구" onclick="selectOption('relationship-button', '친구', 'relationship-input')"> 친구</label><br></div>
+                <div><label><input type="radio" name="relationship-group" value="연인" onclick="selectOption('relationship-button', '연인', 'relationship-input')"> 연인</label><br></div>
+                <div><label><input type="radio" name="relationship-group" value="가족" onclick="selectOption('relationship-button', '가족', 'relationship-input')"> 가족</label><br></div>
+                <div><label><input type="radio" name="relationship-group" value="동료" onclick="selectOption('relationship-button', '동료', 'relationship-input')"> 동료</label><br></div>
+                <div><label><input type="radio" name="relationship-group" value="기타" onclick="selectOption('relationship-button', '기타', 'relationship-input')"> 기타</label><br></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="during-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('during-modal')">&times;</span>
+            <h2>여행 기간 선택</h2>
+            <div class="grid-layout">
+                <div><label><input type="radio" name="during-group" value="당일치기" onclick="selectOption('during-button', '당일치기', 'during-input')"> 당일치기</label><br></div>
+                <div><label><input type="radio" name="during-group" value="1박 2일" onclick="selectOption('during-button', '1박 2일', 'during-input')"> 1박 2일</label><br></div>
+                <div><label><input type="radio" name="during-group" value="2박 3일" onclick="selectOption('during-button', '2박 3일', 'during-input')"> 2박 3일</label><br></div>
+                <div><label><input type="radio" name="during-group" value="3박 4일" onclick="selectOption('during-button', '3박 4일', 'during-input')"> 3박 4일</label><br></div>
+                <div><label><input type="radio" name="during-group" value="4박 5일" onclick="selectOption('during-button', '4박 5일', 'during-input')"> 4박 5일</label><br></div>
+                <div><label><input type="radio" name="during-group" value="2주일" onclick="selectOption('during-button', '2주일', 'during-input')"> 2주일</label><br></div>
+                <div><label><input type="radio" name="during-group" value="한 달" onclick="selectOption('during-button', '한 달', 'during-input')"> 한 달</label><br></div>
+                <div><label><input type="radio" name="during-group" value="기타" onclick="selectOption('during-button', '기타', 'during-input')"> 기타</label><br></div>
+            </div>
+        </div>
+    </div>
+    <!-- 모달 영역 끝 -->
+    
+    <script>
+        // 선택된 옵션을 숨겨진 입력 필드에 설정하는 함수
+        function selectOption(buttonId, value, inputId) {
+            document.getElementById(buttonId).innerText = value;  // 버튼의 텍스트를 업데이트
+            document.getElementById(inputId).value = value;       // 숨겨진 input 필드에 값 설정
+        }
+
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'block';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+    </script>
+    <script src="{{ url_for('static', filename='js/write.js') }}"></script>
+</body>
+</html>
+

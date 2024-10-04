@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>뱃지</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/badge_collection.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <a href="{{ url_for('my') }}" class="back-button">
+                <img src="{{ url_for('static', filename='image/back-arrow.png') }}" alt="뒤로가기">
+            </a>
+            <h1 class="title">뱃지</h1>
+            <p class="subtitle">획득한 뱃지</p>
+        </header>
+
+        <main class="main-content">
+            <div class="badge-selection">
+                {% for region_name in badge_locations.keys() %}
+                    <div class="badge-option" onclick="openModal('{{ region_name }}')">
+                        <span class="badge-text">{{ region_name }}</span>
+                    </div>
+                {% endfor %}
+            </div>
+        </main>
+
+     
+    </div>
+
+    <!-- 모달 -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div class="badge-grid" id="badge-grid">
+                <!-- 뱃지들이 JavaScript를 통해 동적으로 추가됩니다 -->
+            </div>
+            <button class="back-button-modal" onclick="closeModal()">뒤로가기</button>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        // 서버에서 전달된 badge_locations 데이터를 JavaScript 객체로 변환
+        const badgeData = JSON.parse('{{ badge_locations | tojson | safe }}');
+
+        function openModal(region) {
+            const grid = document.getElementById("badge-grid");
+            grid.innerHTML = ""; // 기존의 내용을 초기화
+
+            const badges = badgeData[region];
+            badges.forEach(badge => {
+                const badgeCard = `
+                    <div class="badge-card">
+                        <img src="${badge.image}" alt="${badge.name} 이미지" class="badge-image">
+                        <p>${badge.name}</p>
+                    </div>
+                `;
+                grid.innerHTML += badgeCard; // 카드 추가
+            });
+
+            document.getElementById("modal").style.display = "block"; // 모달 열기
+            document.body.classList.add("modal-open"); // 모달 오픈 시 배경 흐리게
+        }
+
+        function closeModal() {
+            document.getElementById("modal").style.display = "none"; // 모달 닫기
+            document.body.classList.remove("modal-open"); // 배경 원상복귀
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>악세사리</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/shared.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/deco.css') }}" />
+    <link rel="icon" href="{{ url_for('static', filename='image/icon.png') }}" type="image/x-icon">
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <a href="{{ url_for('my') }}" class="back-arrow">
+          <img src="{{ url_for('static', filename='image/back-arrow.png') }}" alt="Back to my" class="back-button">
+        </a>
+        <h1>악세사리</h1>
+      </header>
+      <main>
+        <div class="character-image-section">
+          <div class="row">
+            <div class="box">
+              <!-- 캐릭터 이미지 div에 데이터 속성 추가 -->
+              <div class="image"
+                   data-character-image="{{ character_image }}"
+                   data-character-image-original="{{ original_character_image }}"
+                   style="background-image: url('{{ url_for('static', filename='image/' + character_image) }}');">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 아이템 선택 섹션 -->
+        <div class="items-section">
+          {% for accessory in accessories %}
+            {% if loop.index0 % 2 == 0 %}
+              <div class="item-row">
+            {% endif %}
+            
+            <div class="item-box">
+              <div class="item-image"
+                   style="background-image: url('{% if accessory.purchased %}{{ url_for('static', filename='image/' + accessory.display_name + '_스티커.png') }}{% else %}{{ url_for('static', filename='image/lock.png') }}{% endif %}');">
+              </div>
+              <p>{{ accessory.display_name }}</p>
+              <button class="select-button"
+                      data-accessory-name="{{ accessory.name }}"
+                      data-price="{{ accessory.price }}">
+                {{ '선택' if accessory.purchased else accessory.price ~ ' 크레딧에 구매' }}
+              </button>
+            </div>
+            
+            {% if loop.index0 % 2 == 1 or loop.last %}
+              </div>
+            {% endif %}
+          {% endfor %}
+
+          <!-- 추후 출시 예정 아이템 (필요 시 유지) -->
+          <!--
+          <div class="item-row">
+            <div class="item-box">
+              <div class="item-image"></div>
+              <p>추후 출시 예정</p>
+            </div>
+          </div>
+          -->
+        </div>
+
+        <!-- 버튼 섹션 위에 크레딧 표시 추가 -->
+        <div class="credits-section">
+            <p>잔여 크레딧: <span id="credits">{{ credits }}</span> 크레딧</p>
+        </div>
+
+        <!-- 버튼 섹션 -->
+        <div class="buttons-section">
+            <button class="reset-button">초기화</button>
+            <!-- 적용 버튼은 액세서리 선택 시에만 활성화됩니다 -->
+            <button class="apply-button" disabled>적용</button>
+        </div>
+
+      </main>
+      <footer>
+        <!-- 기존 푸터 내용 -->
+        <!-- ... -->
+      </footer>
+    </div>
+
+    <!-- JavaScript 변수 전달 -->
+    <script>
+      var nocheck = {{ nocheck|tojson }};
+      var characterImageName = "{{ character_image }}";
+      var originalCharacterImageName = "{{ original_character_image }}";
+      var credits = {{ credits }};
+      var userId = "{{ user_id }}";
+      var staticImageBaseURL = "{{ url_for('static', filename='image/') }}";
+    </script>
+
+    <!-- JavaScript 파일 포함 -->
+    <script src="{{ url_for('static', filename='js/deco.js') }}"></script>
+  </body>
+</html>

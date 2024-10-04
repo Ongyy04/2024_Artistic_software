@@ -1,0 +1,65 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f6f6f6;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 400px;
+    height: 90vh; /* Adjust the height to 90vh */
+    text-align: center;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Vertically center */
+    align-items: center; /* Horizontally center */
+    gap: 20px; /* Spacing between elements */
+}
+
+.logo {
+    width: 60%; /* Adjust the size of the logo */
+    margin-bottom: 20px; /* Add space below the logo */
+}
+
+.loading-bar {
+    width: 80%; /* Adjust the loading bar width */
+    height: 5px;
+    background-color: #e0e0e0;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+    border-radius: 2.5px;
+}
+
+.loading-progress {
+    width: 0;
+    height: 100%;
+    background-color: #3753FF; /* Color of the loading bar */
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 2.5px;
+}
+
+@media (max-width: 480px) {
+    .logo {
+        width: 70%; /* Adjust logo size for smaller screens */
+    }
+
+    .loading-bar {
+        width: 80%; /* Keep the loading bar size smaller on smaller screens */
+    }
+}

@@ -1,0 +1,210 @@
+@font-face {
+    font-family: 'Pretendard-Bold';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+}
+
+/* 브라우저 간 일관된 렌더링을 위한 기본 리셋 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Pretendard-Bold', Arial, sans-serif;
+    background-color: #f7f7f7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 0 20px;
+}
+
+/* 전체 컨텐츠를 위한 메인 컨테이너 */
+.container {
+    background-color: #ffffff;
+    font-size: 15px;
+    padding: 10px;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 400px;
+    height: 95vh;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 10px;
+    font-family: 'Pretendard-Bold', Arial, sans-serif;
+}
+
+/* 프로필 이미지 아래에 표시되는 안내 텍스트 */
+.profile-instruction {
+    font-size: 14px;
+    color: #888888;
+    margin-bottom: 5px;
+    text-align: left;
+    font-weight: bold;
+    width: 100%;
+}
+/* 뒤로 가기 화살표 버튼 - 컨테이너 내부에 위치 */
+.back-arrow {
+    position: relative;
+    top: 15px;
+    left: 15px;
+    width: 24px;
+    height: 24px;
+    background: url('/static/image/back-arrow.png') no-repeat center center;
+    background-size: contain;
+    cursor: pointer;
+}
+
+/* 프로필 이미지 및 닉네임 그룹 한 줄에 배치 */
+/* 프로필 이미지 및 닉네임 그룹 중앙 정렬 */
+.profile-container {
+    display: flex;
+    align-items: center; /* 수직 중앙 정렬 */
+    justify-content: center; /* 수평 중앙 정렬 */
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+/* 프로필 이미지 크기 조정 */
+.profile-image {
+    width: 60px; /* 크기 줄이기 */
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #5186D4;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* 닉네임 및 수정 버튼 그룹 한 줄에 배치 */
+.nickname-field {
+    display: flex;
+    align-items: center; /* 수직 가운데 정렬 */
+    justify-content: flex-start; /* 왼쪽 정렬 */
+    margin-left: 10px; /* 여백 조정 */
+}
+
+/* 닉네임 텍스트 */
+.profile-instruction {
+    font-size: 16px;
+    color: #333333;
+    font-weight: bold;
+    margin-right: 10px; /* 수정 버튼과의 간격을 최소화 */
+}
+
+
+
+/* 수정 버튼 스타일 */
+.edit-button {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    background: url('/static/image/change.png') no-repeat center center;
+    background-size: contain;
+    cursor: pointer;
+    margin-top: 5px; /* 닉네임과 버튼 간격 */
+}
+
+
+/* 입력 필드와 수정 버튼을 같은 줄에 배치 */
+.input-field {
+    display: flex; /* flex로 수평 배치 */
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+/* 레이블과 입력 필드 */
+.input-field label {
+    font-size: 12px;
+    color: #666666;
+    margin-left: 50px;
+    margin-bottom: 5px;
+}
+
+/* 입력 필드와 버튼을 한 줄에 배치 */
+.input-wrapper {
+    display: flex; /* 입력 필드와 버튼을 같은 줄에 배치 */
+    align-items: center; /* 수직 가운데 정렬 */
+    width: 60%;
+    margin-left: 50px;
+}
+
+/* 입력 필드 박스 */
+.input-field input {
+    border: none;
+    background-color: #f0f4ff;
+    padding: 10px;
+    flex-grow: 1; /* 입력 필드가 공간을 채우도록 설정 */
+    margin-right: 10px; /* 입력 필드와 버튼 사이의 간격 */
+    border-radius: 25px;
+    box-shadow: inset 0px 2px 4px rgba(0, 0, 0, 0.05);
+    font-size: 16px;
+    color: #333333;
+    font-family: 'Pretendard-Bold', Arial, sans-serif;
+    outline: none;
+}
+
+/* 수정 버튼 스타일 */
+.input-wrapper .edit-button {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    background: url('/static/image/change.png') no-repeat center center;
+    background-size: contain;
+    cursor: pointer;
+}
+
+/* 폼 액션을 위한 버튼 스타일 */
+button {
+    width: 100%;
+    height: 45px;
+    padding: 10px 0;
+    background-color: #5186D4;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    font-size: 16px;
+    font-weight: bold;
+    font-family: 'Pretendard-Bold', Arial, sans-serif;
+}
+
+button:hover {
+    background-color: white;
+    color: #5186D4;
+    border: 1px solid #5186D4;
+}
+
+/* 로그아웃 버튼에 대한 호버 효과 */
+.logout-button {
+    margin-top: auto;
+    background-color: #5186D4;
+    color: white;
+    width: 100%;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 16px;
+    font-family: 'Pretendard-Bold', Arial, sans-serif;
+    transition: 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.logout-button:hover {
+    background-color: #ffffff;
+    color: #5186D4;
+    border: 2px solid #5186D4;
+}
+
+/* 폼 요소에 대한 추가 스타일 */
+form input[type="file"] {
+    display: none;
+}

@@ -1,0 +1,167 @@
+/* Import the Pretendard-Bold font */
+@font-face {
+    font-family: 'Pretendard-Bold';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+}
+
+/* Reset and Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f6f6f6;
+    font-family: 'Pretendard-Bold', Arial, sans-serif; /* 변경된 폰트 적용 */
+}
+
+/* Login Container */
+.login-container {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 400px;
+    height: 90vh;
+    text-align: center;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* 모든 요소를 세로로 가운데 정렬 */
+    align-items: center; /* 가로로 중앙 정렬 */
+    gap: 20px; /* 요소 간의 간격 추가 */
+}
+
+/* Logo */
+.logo {
+    width: 60%;
+    margin-bottom: 20px; /* 로고 아래 여백 추가 */
+}
+
+/* Input Container */
+.input-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%; /* 입력칸을 컨테이너 너비에 맞춤 */
+}
+
+/* Login Input Fields */
+.login-input {
+    padding: 15px;
+    border-radius: 25px;
+    border: 1px solid #ddd;
+    font-size: 16px;
+    width: 80%; /* 가로 길이 줄임 */
+    height: 50px;
+    margin: 0 auto;
+    background-color: #ffffff; /* 입력창 기본 배경색 흰색으로 설정 */
+}
+
+.login-input:focus {
+    border: 1px solid #5186D4; /* 클릭 시 변경된 파란색으로 변경 */
+    outline: none; /* 브라우저 기본 outline 제거 */
+}
+
+/* Spacing Between Input Fields */
+.input-container .login-input:nth-child(1) {
+    margin-bottom: 10px; /* 아이디와 비밀번호 입력창 사이 간격 추가 */
+}
+
+/* Find ID/Password Links */
+.find-id-password {
+    margin-top: 0px; /* 아이디/비밀번호 찾기 링크 위의 간격을 좁힘 */
+}
+
+.find-id-password a {
+    color: #888;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.find-id-password a:hover {
+    text-decoration: underline;
+}
+.social-login {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    margin-top: 10px; /* 소셜 로그인 아이콘을 위로 올림 */
+}
+
+.social-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative; /* 위치 조정을 위한 relative 설정 */
+}
+
+
+.kakao {
+    background-color: #FFE812;
+    padding: 5px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.kakao img {
+    width: 80%;
+    margin-top: 4px; /* 로고를 약간 아래로 이동 */
+}
+
+.naver img,
+.google img {
+    width: 100%;
+}
+
+/* Signup Link */
+.signup-link {
+    font-size: 14px;
+    color: #888;
+    margin-top: 10px; /* 회원가입 링크를 위로 올림 */
+}
+
+.signup-link a {
+    color: #5186D4; /* 변경된 주요 색상으로 수정 */
+    text-decoration: none;
+}
+
+.signup-link a:hover {
+    text-decoration: underline;
+}
+
+/* Login Button */
+.login-button {
+    width: 80%; /* 로그인 버튼 너비 조정 */
+    padding: 15px 0;
+    background-color: #5186D4; /* 변경된 주요 색상으로 수정 */
+    color: white;
+    border: none;
+    border-radius: 25px; /* 로그인 버튼의 border-radius와 일치 */
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-bottom: 0px;
+    transition: background-color 0.3s, color 0.3s; /* 호버 효과 일치 */
+    border: 1px solid #5186D4; /* 변경된 주요 색상으로 수정 */
+}
+
+.login-button:hover {
+    background-color: white;
+    color: #5186D4;
+    border: 1px solid #5186D4;
+}

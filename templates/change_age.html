@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/choose.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='image/icon.png') }}" type="image/x-icon">
+</head>
+<body>
+    <div class="container">
+        <!-- Back Arrow -->
+        <div class="back-button">
+            <a href="{{ url_for('setting') }}">  <!-- Flask 라우트를 통해 이동 -->
+                <img src="{{ url_for('static', filename='image/back-arrow.png') }}" alt="Back">
+            </a>
+        </div>
+
+        <!-- Question Section -->
+        <div class="question-section">
+            <h1>나이대를 골라주세요</h1>
+        </div>
+
+        <!-- Form to submit age -->
+        <form action="{{ url_for('change_age') }}" method="POST">
+            <div class="answer-container">
+                <label class="answer">
+                    <input type="radio" name="age" value="10대" checked>
+                    <span>10대</span>
+                </label>
+                <label class="answer">
+                    <input type="radio" name="age" value="20대">
+                    <span>20대</span>
+                </label>
+                <label class="answer">
+                    <input type="radio" name="age" value="30대">
+                    <span>30대</span>
+                </label>
+                <label class="answer">
+                    <input type="radio" name="age" value="40대 이상">
+                    <span>40대 이상</span>
+                </label>
+            </div>
+
+            <!-- Next Button -->
+            <button type="submit" class="next-button">수정하기</button>
+        </form>
+    </div>
+</body>
+</html>

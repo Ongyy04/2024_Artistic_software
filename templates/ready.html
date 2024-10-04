@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>준비 완료!</title>
+    <link rel="icon" href="{{ url_for('static', filename='image/icon.png') }}" type="image/x-icon">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/ready.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="character-container">
+            <img src="{{ url_for('static', filename='image/line.png') }}" alt="캐릭터" class="character" id="characterImage">
+        </div>
+        <div class="text-container">
+            <h1>준비 완료!</h1>
+        </div>
+        <button class="home-button" onclick="location.href='{{ url_for('check') }}'">홈으로 가기</button>
+
+
+    </div>
+
+    <script>
+        const images = [
+            "{{ url_for('static', filename='image/character_1.png') }}",
+            "{{ url_for('static', filename='image/character_2.png') }}",
+            "{{ url_for('static', filename='image/character_3.png') }}",
+            "{{ url_for('static', filename='image/character_4.png') }}",
+            "{{ url_for('static', filename='image/character_5.png') }}"
+        ];
+        let currentIndex = 0;
+        const characterImage = document.getElementById('characterImage');
+
+        function changeImage() {
+            // 페이드 아웃
+            characterImage.classList.add('fade-out');
+            setTimeout(() => {
+                currentIndex = (currentIndex + 1) % images.length;
+                characterImage.src = images[currentIndex];
+                // 페이드 인
+                characterImage.classList.remove('fade-out');
+                characterImage.classList.add('fade-in');
+            }, 500); // 이미지 교체 전에 페이드 아웃 시간과 일치하도록 설정
+        }
+
+        setInterval(changeImage, 1000); // 2초 간격으로 이미지 변경 (페이드 인/아웃 포함)
+    </script>
+</body>
+</html>

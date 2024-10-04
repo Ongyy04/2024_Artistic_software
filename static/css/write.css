@@ -1,0 +1,558 @@
+
+/* Import the Pretendard-Regular font */
+@font-face {
+    font-family: 'Pretendard-Bold';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+}
+
+/* 공통 스타일 (Common styles for the whole page) */
+* {
+    font-family: 'Pretendard-Bold', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Pretendard-Bold', Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+    overflow: auto; /* Allows body to scroll */
+    width: 100%;
+    min-height: 100vh; /* Minimum height to cover full viewport */
+}
+
+.container {
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    font-weight: bold;
+    margin-top: 20px; /* Added margin for spacing from top */
+}
+
+/* Header */
+/* Header */
+header {
+    display: flex;
+    justify-content: left; /* 텍스트와 이미지를 가운데 정렬 */
+    align-items: left; /* 수직 정렬을 맞춤 */
+    padding: 0;
+    background-color: #fff;
+    /* Removed border-bottom to remove the underline */
+    border-bottom: none; 
+    max-width: 360px;
+    margin: 0 auto;
+    width: 100%;
+    margin-bottom: 20px; /* Spacing between header and next section */
+    font-size: medium;
+}
+
+header h1 {
+    font-family: 'Pretendard-Bold', Arial, sans-serif;
+    display: flex;
+    align-items: left; /* h1 안의 텍스트와 이미지를 수직 중앙 정렬 */
+    font-size: 30px; /* 제목 글씨 크기 */
+}
+
+header img {
+    width: 24px; /* 이미지 크기 조정 */
+    height: 24px;
+    margin-top: 8px; /* 텍스트와 이미지 간격 */
+    margin-right: 4px;
+}
+
+/* 관심사 설정 섹션 (Interest filter section) */
+.filter-section {
+    margin-bottom: 30px; /* Increased spacing below "관심사 설정" */
+}
+
+.filter-section h3 {
+    margin-bottom: 10px; /* Space below "관심사 설정" heading */
+}
+
+.line {
+    border-top: 1px solid #ccc; /* 상단에 선 추가 */
+    margin-bottom: 20px; /* 상하 여백 설정 */
+    width: 100%; /* 선의 너비 */
+}
+
+/* Recommendations section */
+.recommendations {
+    margin-bottom: 30px; /* Increased spacing below "나도 다녀왔어요" */
+}
+
+.recommendations h3 {
+    margin-bottom: 10px; /* Space below "나도 다녀왔어요" heading */
+}
+
+/* Hashtags section */
+.hashtags {
+    margin-bottom: 30px; /* Increased spacing below "인기 해시태그" */
+}
+
+.hashtags h3 {
+    margin-bottom: 10px; /* Space below "인기 해시태그" heading */
+}
+
+
+/* Image upload section */
+.addImage {
+    width: 100%;
+    height: 150px;
+    border: 2px dashed #5186d4;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #aaa;
+    margin-bottom: 15px; /* More spacing for image upload */
+    cursor: pointer; /* Make the whole div clickable */
+    transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+}
+
+.addImage:active {
+    transform: scale(0.98); /* Slightly shrink when clicked */
+}
+
+.addImage::before {
+    content: var(--before-content, "이미지 추가하기");
+    color: #5186D4; /* Text color */
+    font-size: 16px;
+    font-weight: bold;
+    pointer-events: none; /* Prevent interaction with the pseudo-element */
+}
+
+/* 사진이 업로드되었을 때 before 콘텐츠 제거 */
+.image-uploaded::before {
+    content: none; /* 빈 콘텐츠로 설정하여 텍스트를 숨김 */
+}
+
+.addImage img {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover; /* 이미지를 컨테이너에 꽉 차도록 맞추며 비율을 유지 */
+    border-radius: 10px; /* 이미지의 모서리를 둥글게 설정 */
+    background-position: center;
+    background-size: cover; /* 이미지가 컨테이너를 완전히 덮도록 설정 */
+    background-repeat: no-repeat;
+}
+
+/* Style for the file input to be hidden */
+.image-upload input[type="file"] {
+    display: none;
+}
+
+.inputImg {
+    width: 100%;
+}
+
+/* Textarea for post content */
+textarea {
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ffffff;
+    background-color: #F3F5FF;
+    border-radius: 15px;
+    margin-bottom: 20px; /* Spacing after textarea */
+}
+textarea:focus {
+    background-color: #ffffff; /* Change background to white */
+    border: 1px solid #5186d4; /* Change border color to #3753FF */
+    outline: none; /* Remove the default focus outline */
+}
+
+/* 관심사 설정 섹션 (Interest filter section) */
+
+.filter-section {
+    margin-bottom: 30px;
+    padding: 15px;
+    background-color: #F9FAFF;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.filter-section h3 {
+    font-size: 18px;
+    color: #000000;
+    margin-bottom: 15px;
+}
+
+.filter-section .homeTags{
+    display: flex;
+    justify-content: space-around;
+    gap: 25px; /* 버튼 사이의 간격 */
+    margin-bottom: 15px; /* 줄 간격 */
+}
+
+.filter-section .tags{
+    display: flex;
+    justify-content: center;
+    gap: 15px; /* 버튼 사이의 간격 */
+    margin-bottom: 15px; /* 줄 간격 */
+}
+
+.filter-section .newTags{
+    display: flex;
+    justify-content: center;
+    gap: 15px; /* 버튼 사이의 간격 */
+    margin-bottom: 15px; /* 줄 간격 */
+}
+
+.filter-section .homeTags button {
+    font-family: 'Pretendard-Bold', Arial, sans-serif;
+    padding: 10px 15px;
+    border: 2px solid #5186d4;
+    background-color: #ffffff;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #5186d4;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    min-width: 90px; /* 버튼 최소 너비 */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.filter-section .tags button {
+    font-family: 'Pretendard-Bold', Arial, sans-serif;
+    padding: 10px 15px;
+    border: 2px solid #5186d4;
+    background-color: #ffffff;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    color:  #5186d4;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    min-width: 90px; /* 버튼 최소 너비 */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.filter-section .newTags button {
+    font-family: 'Pretendard-Bold', Arial, sans-serif;
+    padding: 10px 15px;
+    border: 2px solid #5186d4;
+    background-color: #ffffff;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #5186d4;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    min-width: 90px; /* 버튼 최소 너비 */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* 인기 해시태그 */
+.hashtags .homeTags button {
+    font-family: 'Pretendard-Bold', Arial, sans-serif;
+    padding: 5px 10px;
+    border: 2px solid #e3e3e3;
+    background-color: #ffffff;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #5186d4;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    min-width: 90px; /* 버튼 최소 너비 */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.filter-section .homeTags button:hover {
+    background-color: #5186d4;
+    color: #ffffff;
+    /* border: 2px solid #5186d4; */
+}
+
+.filter-section .tags button:hover{
+    background-color: #5186d4;
+    color: #ffffff;
+    /* border: 2px solid #5186d4; */
+}
+
+.filter-section .newTags button:hover {
+    background-color: #5186d4;
+    color: #ffffff;
+    /* border: 2px solid #5186d4; */ 
+}
+
+.filter-section p {
+    font-size: 12px;
+    margin-top: 10px; /* Spacing before instructions */
+}
+
+/* 모바일 대응 */
+@media (max-width: 480px) {
+    .filter-section .tag-row {
+        flex-wrap: wrap; /* 작은 화면에서는 줄바꿈 적용 */
+        justify-content: flex-start;
+    }
+
+    .filter-section button {
+        width: 100%; /* 작은 화면에서는 버튼이 너비 전체를 차지 */
+        margin-bottom: 10px; /* 각 버튼 간에 간격 추가 */
+    }
+}
+
+/* Recommendations section */
+.recommendations {
+    margin-bottom: 10px; /* Spacing between recommendations and next section */
+}
+
+.recommendation-cards {
+    display: flex;
+    justify-content: space-between; /* 카드 사이에 여백을 추가 */
+    gap: 10px; /* 카드 사이의 간격 */
+    margin-bottom: 10px; /* 카드 섹션 아래에 여백 */
+}
+
+.card {
+    flex: 1;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+    margin-bottom: 0; /* 카드 섹션 아래 여백 제거 */
+    max-width: 50%; /* 카드의 최대 너비를 50%로 설정하여 두 개의 카드가 나란히 표시되도록 */
+}
+
+.card:hover {
+    background-color: #ffffff; /* 배경을 흰색으로 변경 */
+    border: 1px solid #5186d4; /* 테두리 색상을 변경 */
+    outline: none; /* 기본 포커스 테두리 제거 */
+}
+
+.card-img {
+    width: 100%;
+    height: 100px; /* 이미지 높이를 줄여서 반응형으로 조정 */
+    object-fit: cover;
+}
+
+.card-content {
+    padding: 10px; /* 카드 내용 패딩 줄이기 */
+    text-align: left;
+}
+
+.card-content .review {
+    font-weight: bold;
+    margin-bottom: 5px; /* 텍스트 사이 간격 줄이기 */
+    color: #333;
+}
+
+.card-content .location, .card-content .cost {
+    font-size: 12px; /* 텍스트 크기 줄이기 */
+    color: #666;
+    margin-bottom: 3px; /* 텍스트 사이 간격 줄이기 */
+}
+
+.card-content .author {
+    font-size: 10px; /* 텍스트 크기 줄이기 */
+    color: #999;
+}
+
+
+/* Action buttons section */
+.actions {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px; /* Spacing between actions and next section */
+}
+
+.actions .upload-btn {
+    flex: 1;
+    margin: 0 5px;
+    padding: 10px;
+    background-color: #ffffff; /* Change background to white */
+    border: 1px solid #5186d4; /* Change border color to #3753FF */
+    border-radius: 10px;
+    cursor: pointer;
+    color: #000000;
+}
+.actions .upload-btn:hover {
+    border: 1px solid #ffffff;
+    background-color: #5186d4;
+    color: #ffffff;
+    outline: none; /* Remove the default focus outline */
+}
+
+/* Hashtags section */
+.hashtags {
+    margin-bottom: 20px; /* Spacing between hashtags and footer */
+}
+
+.bottom .item-row{
+    margin-bottom: 30px;
+}
+
+.bottom {
+    margin-bottom: 50px; /* Spacing at the bottom to ensure nothing gets cut off */
+}
+
+/* 하단 네비게이션 바 스타일 */
+.footer-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    color: #888;
+    font-size: 0.8em;
+    text-align: center;
+    margin: 0 20px;
+    font-weight: bold;
+}
+
+/* 네비게이션 아이콘 스타일 */
+.footer-menu-icon {
+    height: 25px;
+    width: 25px;
+}
+
+/* 하단 네비게이션 바 전체 스타일 */
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff;
+    border-top: 2px solid #eee;
+    padding: 15px 0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    max-width: 360px;
+    margin: 0 auto;
+}
+
+
+/* 모달 스타일 (Modal styles) */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(181, 22, 22);
+    background-color: rgba(0, 0, 0, 0.4);
+    padding-top: 60px;
+}
+
+.modal-content {
+    background-color: #ffffff;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 400px;
+    border-radius: 10px;
+}
+
+/* Add vertical spacing between text elements in the modal */
+.modal-content h2 {
+    margin-bottom: 15px; /* Spacing below heading */
+}
+
+.modal-content p {
+    margin-bottom: 10px; /* Spacing below paragraphs */
+}
+
+.modal-content label {
+    display: block; /* Make sure labels take up full width */
+    margin-bottom: 10px; /* Spacing between labels */
+}
+
+/* 그리드 레이아웃을 카드 스타일로 변경 */
+.modal-content .grid-layout {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 두 개의 열 생성 */
+    gap: 15px; /* 카드 사이의 간격 */
+}
+
+/* 버튼 및 라벨 스타일 */
+.modal-content .grid-layout button,
+.modal-content .grid-layout label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px; /* 카드 내부 패딩 */
+    background-color: #ffffff; /* 배경색을 흰색으로 변경 */
+    border: 2px solid #aaa; /* 두꺼운 파란색 테두리 */
+    border-radius: 10px; /* 부드러운 테두리 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 카드에 그림자 추가 */
+    cursor: pointer; /* 커서 모양 변경 */
+    text-align: center; /* 텍스트 가운데 정렬 */
+    transition: transform 0.2s ease-in-out; /* 호버 시 애니메이션 추가 */
+    font-size: 16px; /* 텍스트 크기 */
+    color: #000000; /* 텍스트 색상 */
+    width: 100%; /* 그리드 칸의 전체 너비에 맞춤 */
+    height: 80px; /* 고정된 높이 설정 */
+    box-sizing: border-box; /* 테두리와 패딩 포함하여 크기 설정 */
+}
+
+#aged div:nth-of-type(5){
+    grid-column: 1/ span 2;
+}
+
+#gendered div:nth-of-type(3){
+    grid-column: 1/ span 2;
+}
+
+.modal-content .grid-layout button:hover,
+.modal-content .grid-layout label:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* 호버 시 그림자 강화 */
+    background-color: #5186D4;
+    color: #ffffff;
+    border: 2px solid #5186D4;
+}
+
+/* 선택된 라벨 스타일 추가 */
+.modal-content .grid-layout input[type="radio"]:checked + label {
+    background-color: #d0e8ff; /* 선택된 라벨의 배경색 */
+    border-color: #5186d4; /* 선택된 라벨의 테두리 색상 */
+    color: #002966; /* 선택된 라벨의 텍스트 색상 */
+}
+
+/* You can also apply a general margin for all elements inside modal-content if needed */
+.modal-content > * {
+    margin-bottom: 15px; /* Spacing between any direct child elements */
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}

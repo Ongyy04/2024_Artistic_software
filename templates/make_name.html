@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이름 생성</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/make_name.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='image/icon.png') }}" type="image/x-icon">
+</head>
+<body>
+    <div class="container">
+        <h1>새로 오신 걸 환영합니다!</h1>
+        <img src="{{ url_for('static', filename='image/character_3.png') }}" alt="Character Image" class="character-image">
+        <p class="prompt-text">당신의 이름을 입력하세요</p>
+        <form method="POST" action="/make_name">
+            <input type="text" class="name-input" name="name" placeholder="이름" required>
+            <button type="submit">다음으로</button>
+        </form>
+    </div>
+</body>
+</html>

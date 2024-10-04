@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>출석 체크</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/check.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='image/icon.png') }}" type="image/x-icon">
+</head>
+<body>
+    <div class="check-container">
+        <!-- Back arrow section inside the container -->
+        <a href="{{ url_for('home_view') }}" class="back-arrow">
+            <img src="{{ url_for('static', filename='image/back-arrow.png') }}" alt="Back to Home">
+        </a>
+        <div class="profile-section">
+            <div class="profile-image-container">
+                <img src="{{ url_for('static', filename='image/크레딧.png') }}" alt="Credit Image" class="profile-image">
+                <div class="credit-text" id="credit-text">
+                    {{ credits }} <!-- Display the credit value here -->
+                </div>
+            </div>
+            <div class="status-text">
+                <p>출석체크 현황</p>
+                <p class="coin-text" id="watch-ad">광고보고 코인 얻기</p>
+            </div>
+        </div>
+
+        <div class="calendar-grid">
+            <!-- Loop through 1 to 28 days -->
+            {% for day in range(1, 29) %}
+                <div class="day {% if day <= check_in_count %}checked{% endif %}">
+                    {% if day <= check_in_count %}
+                        <img src="{{ url_for('static', filename='image/출석체크.png') }}" alt="Stamp">
+                    {% else %}
+                        {{ day }}
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+
+        <!-- Modal popup for video -->
+        <div id="ad-modal" class="modal" style="display:none;">
+            <div class="modal-content">
+                <span class="close" id="close-modal">&times;</span>
+                <video id="ad-video" controls>
+                    <source src="{{ url_for('static', filename='video/ad-video.mp4') }}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript to handle modal and video playback -->
+   <script>
+    window.onload = function() {
+        var alreadyCheckedIn = {{ already_checked_in | tojson }}; // Get the flag from the backend
+        var checkInCount = {{ check_in_count }};
+        var modal = document.getElementById('ad-modal');
+        var video = document.getElementById('ad-video');
+        var watchAdBtn = document.getElementById('watch-ad');
+        var closeModalBtn = document.getElementById('close-modal');
+        var creditText = document.getElementById('credit-text');
+        var videoWatched = false;
+
+        // Handle redirection after inactivity
+        var inactivityTimeout;
+        var redirectTimeout;
+
+        function startRedirectTimer() {
+            redirectTimeout = setTimeout(function() {
+                window.location.href = "{{ url_for('home_view') }}";
+            }, 5000);
+        }
+
+        function resetTimers() {
+            clearTimeout(inactivityTimeout);
+            clearTimeout(redirectTimeout);
+        }
+
+        // Show modal when '광고보고 코인 얻기' is clicked
+        watchAdBtn.onclick = function() {
+            modal.style.display = 'block';
+            video.play();
+
+            inactivityTimeout = setTimeout(function() {
+                alert("You have not interacted with the video. Redirecting to home in 5 seconds.");
+                startRedirectTimer();
+            }, 20000);
+        };
+
+        closeModalBtn.onclick = function() {
+            modal.style.display = 'none';
+            video.pause();
+            resetTimers();
+        };
+
+        video.onended = function() {
+            videoWatched = true;
+            resetTimers();
+
+            fetch('/update_credits', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    user_id: '{{ user_id }}',
+                    credits_to_add: 15
+                })
+            }).then(response => {
+                return response.json().then(data => {
+                    if (response.ok) {
+                        alert("광고를 끝까지 시청하셨습니다. 보상이 지급되었습니다.");
+                        modal.style.display = 'none';
+
+                        fetch('/get_credits')
+                            .then(res => res.json())
+                            .then(creditsData => {
+                                creditText.innerText = creditsData.credits;
+                            })
+                            .catch(err => console.error("Error fetching updated credits:", err));
+                    } else {
+                        alert("보상 지급 중 문제가 발생했습니다.");
+                    }
+                });
+            }).catch(err => {
+                console.error("Error:", err);
+            });
+        };
+
+        // Check for consecutive milestones (10, 20, 28 days)
+        if (!alreadyCheckedIn && [10, 20, 28].includes(checkInCount)) {
+            alert(`축하합니다! 연속 ${checkInCount}일 출석으로 보상을 얻었습니다!`);
+            
+            fetch('/update_credits', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    user_id: '{{ user_id }}',
+                    credits_to_add: 10,
+                    stack_credit_to_add: 10
+                })
+            }).then(response => {
+                return response.json().then(data => {
+                    if (response.ok) {
+                        fetch('/get_credits')
+                            .then(res => res.json())
+                            .then(creditsData => {
+                                creditText.innerText = creditsData.credits;
+                                document.getElementById('stack-credit-text').innerText = creditsData.stack_credit;
+                            })
+                            .catch(err => console.error("Error fetching updated credits:", err));
+                    } else {
+                        alert("보상 지급 중 문제가 발생했습니다.");
+                    }
+                });
+            }).catch(err => {
+                console.error("Error:", err);
+            });
+        }
+    };
+
+</script>
+
+
+</body>
+</html>

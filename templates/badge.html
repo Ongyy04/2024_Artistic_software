@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>뱃지</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='css/shared.css')}}" />
+    <link rel="stylesheet" href="{{url_for('static',filename='css/badge.css')}}" />
+    <link rel="icon" href="{{ url_for('static', filename='image/icon.png') }}" type="image/x-icon">
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <a href="javascript:void(0);" onclick="goBack()">
+                <img class="back-return" src="{{ url_for('static', filename='image/back-arrow.png') }}" alt="뒤로가기" />
+        </a>
+        <h1>뱃지</h1>
+      </header>
+      <main>
+        <div class="items-section">
+          {% for post in posts %}
+            {% if loop.index0 % 2 == 0 %}
+              <div class="item-row">
+            {% endif %}
+            <div class="item-box">
+              <!-- Extract country name and use it to display the image -->
+              <div class="item-image" style="background-image: url('{{ url_for('static', filename='image/' + post['tags']['region'].split(' - ')[1] + '.png') }}');"></div>
+              <p>{{ post['tags']['region'].split(' - ')[1] }}</p>
+            </div>
+            {% if loop.index0 % 2 == 1 or loop.last %}
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+        
+        <section class="bottom"></section>
+      </main>
+
+    </div>
+  </body>
+</html>

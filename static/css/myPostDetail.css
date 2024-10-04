@@ -1,0 +1,364 @@
+
+/* Import the Pretendard-Regular font */
+@font-face {
+    font-family: 'Pretendard-Bold';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+}
+
+/* 공통 스타일 (Common styles for the whole page) */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.comment {
+    margin: 10px 0;
+    padding: 10px;
+    background-color: #ffffff; /* 박스 배경색 */
+    border: 1px solid #ccc; /* 테두리 색상 */
+    border-radius: 8px; /* 모서리를 둥글게 */
+    padding-top: 5px;
+    margin: 10px 0;
+}
+
+.comment-user {
+    font-weight: bold;
+    color: #333;
+    font-size: 14px;
+}
+
+.comment-text {
+    margin-top: 5px;
+    color: #555;
+    font-size: 12px;
+}
+
+.comment-form {
+    padding-top: 15px;
+    border-top: 1px solid #ccc; /* 얇은 회색 선 추가 */
+    margin-top: 20px; /* 위아래로 여백 추가 */
+    width: 100%; /* 선의 너비를 전체로 설정 */
+    display : flex;
+    gap: 15px;
+    /* justify-content: space-between; */
+    margin-bottom: 25px;
+}
+
+body {
+    font-family: 'Pretendard-Bold', Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+    overflow: auto; /* Allows body to scroll */
+    width: 100%;
+    min-height: 100vh; /* Minimum height to cover full viewport */
+}
+
+.container {
+    padding: 20px;
+    border-radius: 10px;
+    width: 100%; /* 컨테이너의 너비를 100%로 설정 */
+    max-width: 400px; /* 메인 컨테이너의 최대 너비 */
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    font-weight: bold;
+    margin-top: 20px;
+    overflow: visible; /* 컨테이너 내 요소가 넘치지 않도록 설정 */
+    box-sizing: border-box; /* 패딩을 포함한 컨테이너 크기 계산 */
+}
+
+/* 헤더 스타일 */
+header {
+    display: flex;
+    padding: 0;
+    background-color: #fff;
+    /* border-bottom: 1px solid #ddd; */
+    max-width: 360px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.back-return {
+    width: 30px;
+    cursor: pointer;
+}
+
+/* 메인 콘텐츠 영역 스타일 */
+.post {
+    background-color: #fff;
+    margin-bottom: 70px;
+    border-radius: 4px;
+    padding: 10px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.content {
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.profile-img {
+    width: 20px;
+    height: 20px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+
+/* 이미지가 들어갈 수 있는 스타일 */
+.post-image {
+    background-color: #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.post-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+/* 포스트 푸터 스타일 */
+.post-footer {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.post-actions {
+    display: flex;
+    align-items: center;
+    padding-top: 10px;
+    padding-bottom: 10px;   
+    gap:20px;
+}
+
+
+/* .tags-right {
+    display : flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px 5px;
+} */
+
+
+
+
+/* Existing CSS for .tag */
+/* .tags-left {
+    font-family: 'Pretendard-Bold', Arial, sans-serif;
+    padding: 5px 10px;
+    border: 2px solid #e3e3e3;
+    background-color: #ffffff;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #5186d4;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    min-width: 90px; 
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+} */
+
+/* New CSS for .tags-left */
+.tags-left {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #ffffff;
+    gap: 10px; /* Adjust the spacing as needed */
+    color: #5186d4;
+    
+}
+
+.tag {
+    color: #5186D4;
+    background-color: #f6faff;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 15px;
+    border: 1.5px solid #e3e9f1;
+}
+
+textarea {
+    width: 100%; /* 너비 설정 */
+    height: 50px; /* 높이 설정 */
+    padding: 10px; /* 내부 여백 */
+    border: 2px solid #cccccc; /* 테두리 설정 */
+    border-radius: 5px; /* 모서리 둥글게 */
+    font-size: 16px; /* 글자 크기 */
+    font-family: 'Pretendard-Bold', Arial, sans-serif; /* 글꼴 설정 */
+    resize: none; /* 크기 조절 버튼 숨기기 */
+}
+
+
+
+
+
+
+
+
+
+.post-icon {
+    display: inline-block;
+    cursor: pointer;
+}
+
+.post-save-icon {
+    padding-left: 8px;
+    padding-right: 8px;
+    background-color: #f1f4f8;
+    border-radius: 10px;
+    padding-top: 1px;
+    padding-bottom: 1px;
+}
+.like-button {
+    height: 25px;
+    padding-top: 4px;
+}
+
+.stored-button {
+    height: 23px;
+}
+
+.post-footer .content {
+    font-size: 12px;
+    margin-bottom: 10px;
+    margin-left: 5px;
+    color: #1f1f1f;
+    font-weight: 400;
+}
+
+.post-footer .comment {
+    margin-left: 10px;
+    font-size: 10px;
+    color: #323232;
+}
+
+hr {
+    opacity: 0.5;
+    margin-top: 0;
+    margin-bottom: 14px;
+    border: none;
+    height: 0.8px;
+    background-color: #1e1e1e;
+    width: 100%;
+}
+
+
+.actions {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px; /* Spacing between actions and next section */
+    padding-bottom: 50px;
+}
+
+.actions .delete-button {
+    flex: 1;
+    margin: 0 5px;
+    padding: 10px;
+    border: 1px solid #ffffff;
+    background-color: #5186d4;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 30px;
+}
+.actions .delete-button:hover {
+    background-color: #ffffff; /* Change background to white */
+    color: #323232;
+    border: 1px solid #3753FF; /* Change border color to #3753FF */
+    outline: none; /* Remove the default focus outline */
+}
+
+button {
+    background-color: #5186D4; /* 배경색 (초록색) */
+    color: white; /* 글자색 */
+    border: none; /* 테두리 제거 */
+    padding: 10px 20px; /* 여백 */
+    font-size: 13px; /* 글자 크기 */
+    border-radius: 5px; /* 모서리를 둥글게 */
+    cursor: pointer; /* 커서 포인터 */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
+    transition: transform 0.2s, background-color 0.2s; /* 배경색과 크기 변화 애니메이션 */
+    height: 50px;
+}
+
+button:hover {
+    background-color: rgb(183, 183, 183); /* 마우스를 올렸을 때 배경색 */
+    transform: scale(1.05); /* 버튼을 약간 확대 */
+}
+
+.like-button-space {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background-color: #f1f4f8;
+    border-radius: 10px;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+.stored-button {
+    padding-top: 2px;
+}
+
+
+/* 하단 네비게이션 바 스타일 (home과 동일하게) */
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    border-top: 1px solid #ddd;
+    padding: 10px 0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    max-width: 360px;
+    margin: 0 auto;
+    padding-bottom: 5px;
+}
+
+.footer-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    color: #888;
+    font-size: 0.5em;
+    text-align: center;
+    margin: 0 20px;
+}
+
+.footer-menu span {
+    font-size: 0.8em;
+    margin-top: 3px;
+    font-weight: bold;
+}
+
+.footer-menu-icon {
+    height: 25px;
+    width: 25px;
+}

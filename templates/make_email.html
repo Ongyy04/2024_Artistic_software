@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이메일 생성</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/make_email.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='image/icon.png') }}" type="image/x-icon">
+    <script defer src="{{ url_for('static', filename='js/make_email.js') }}"></script> <!-- Include JS file -->
+</head>
+<body>
+    <div class="container">
+        <h1>새로 오신 걸 환영합니다!</h1>
+        <img src="{{ url_for('static', filename='image/character_5.png') }}" alt="Character Image" class="character-image">
+        <p class="prompt-text">이메일을 설정하세요</p>
+        <form method="POST" action="/make_email">
+            <div class="input-container">
+                <input type="email" class="email-input" name="email" placeholder="이메일" required>
+                <button class="verify-button" type="button" id="verify-btn">인증</button>
+            </div>
+
+            <!-- This is where the new input field and confirmation button will be inserted -->
+            <div id="verification-section"></div>
+
+            <button type="submit">다음으로</button>
+        </form>
+    </div>
+</body>
+</html>

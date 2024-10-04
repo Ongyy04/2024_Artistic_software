@@ -1,0 +1,301 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Raleway:wght@700&family=Oleo+Script:wght@700&family=Quicksand:wght@300;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>내 여행</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/my.css') }}" />
+    <script>
+      var staticImageBaseURL = "{{ url_for('static', filename='image/') }}";
+    </script>
+    <link rel="icon" href="{{ url_for('static', filename='image/icon.png') }}" type="image/x-icon">
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1><img src="{{ url_for('static',filename='image/my.png') }}" alt="내 여행">내 여행</h1>
+      </header>
+      <div class="character-section">
+        <div class="character-avatar">
+          <div
+            class="avatar-placeholder"
+            style="background-image: url('{{ profile_image }}');"
+          ></div>
+        </div>
+        <div class="character-info">
+          <p>{{ nickname }}</p>
+
+        </div>
+      </div>
+
+      <div class="character-image-section">
+        <div class="row">
+          <div class="box">
+            <div
+              class="image"
+              style="background-image: url('{{ url_for('static', filename='image/' + character_image) }}');"
+            ></div>
+            <button class="shower">떼밀기</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="items-section">
+        <a
+          href="{% if posts %}{{ url_for('deco') }}{% else %}javascript:void(0);{% endif %}"
+        >
+        <h2>악세사리</h2>
+        <!-- 첫 번째 행의 아이템들 -->
+        <div class="item-row">
+            <!-- 밀짚 모자 -->
+            <div class="item-box">
+                {% set accessory = accessories[0] %}
+                <div class="item-image"
+                     style="background-image: url('{% if accessory.purchased %}{{ url_for('static', filename='image/밀짚모자_스티커.png') }}{% else %}{{ url_for('static', filename='image/lock.png') }}{% endif %}');">
+                </div>
+                <p>{{ accessory.display_name }}</p>
+                
+            </div>
+            <!-- 당근 모자 -->
+            <div class="item-box">
+                {% set accessory = accessories[1] %}
+                <div class="item-image"
+                     style="background-image: url('{% if accessory.purchased %}{{ url_for('static', filename='image/당근모자_스티커.png') }}{% else %}{{ url_for('static', filename='image/lock.png') }}{% endif %}');">
+                </div>
+                <p>{{ accessory.display_name }}</p>
+               
+            </div>
+        </div>
+        <!-- 수정된 악세사리 부분 끝 -->
+
+        <a
+          href="{% if posts %}{{ url_for('badge_collection') }}{% else %}javascript:void(0);{% endif %}"
+        >
+          <h2>뱃지</h2>
+          <div class="badge-row">
+            {% if posts %}
+              {% for post in posts %}
+              <div class="badge-box">
+                {% if post['tags']['region'].split(' - ')[1] == '한국' %}
+                  <div
+                    class="badge-image"
+                    style="background-image: url('{{ url_for('static', filename='image/' + post['tags']['region'].split(' - ')[2] + '.png') }}');"
+                  ></div>
+                  <p>{{ post['tags']['region'].split(' - ')[2] }}</p>
+                
+
+                {% else %}
+                  <div
+                    class="badge-image"
+                    style="background-image: url('{{ url_for('static', filename='image/' + post['tags']['region'].split(' - ')[1] + '.png') }}');"
+                  ></div>
+                  <p>{{ post['tags']['region'].split(' - ')[1] }}</p>
+                {% endif %}
+              </div>
+              {% endfor %}
+            {% else %}
+              <p>획득한 뱃지가 없습니다.</p>
+            {% endif %}
+          </div>
+        </a>
+
+        <a
+          href="{% if posts %}{{ url_for('mypost') }}{% else %}javascript:void(0);{% endif %}"
+          class="bottom"
+          {% if not posts %}onclick="alert('게시물이 없습니다');"{% endif %}
+        >
+          <h2>내 게시물</h2>
+          <section class="recommendations">
+            <div class="recommendation-cards">
+              {% if posts %}
+                {% for post in posts %}
+                  <div class="card">
+                    <img
+                      src="{{ url_for('static', filename=post['image_path']) }}"
+                      alt="멋진 사진"
+                      class="card-img"
+                    />
+                    <div class="card-content">
+                      <p class="location">지역: {{ post['tags']['region'] }}</p>
+                      <p class="author">
+                        여행 유형: {{ post['tags']['travel_type'] }}
+                      </p>
+                    </div>
+                  </div>
+                {% endfor %}
+              {% else %}
+                <p>현재 작성한 게시물이 없습니다</p>
+              {% endif %}
+            </div>
+          </section>
+        </a>
+      </div>
+      <section class="bottom"></section>
+      <!-- 이하 코드는 변경되지 않았습니다 -->
+      <!-- 비디오 광고 모달 -->
+      <div id="adModal" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <video controls>
+            <source src="{{ url_for('static', filename='video/ad-video.mp4') }}" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      </div>
+
+      <footer>
+        <div class="footer-menu">
+            <a href="{{ url_for('write') }}" class="post-link">
+                <img class="footer-menu-icon" src="{{ url_for('static', filename='image/write.png') }}" alt="글쓰기아이콘"/>
+            </a>
+            <span>글쓰기</span>
+        </div>
+        <div class="footer-menu">
+            <a href="{{ url_for('save') }}" class="post-link">
+                <img class="footer-menu-icon" src="{{ url_for('static', filename='image/save.png') }}" alt="저장됨아이콘"/>
+            </a>
+            <span>저장됨</span>
+        </div>
+        <div class="footer-menu">
+            <a href="{{ url_for('home_view') }}" class="post-link">
+                <img class="footer-menu-icon" src="{{ url_for('static', filename='image/home.png') }}" alt="홈아이콘"/>
+            </a>
+            <span>홈</span>
+        </div>
+        <div class="footer-menu">
+            <a href="{{ url_for('my') }}" class="post-link">
+                <img class="footer-menu-icon" src="{{ url_for('static', filename='image/my.png') }}" alt="내여행아이콘"/>
+            </a>
+            <span>내 여행</span>
+        </div>
+        <div class="footer-menu">
+            <a href="{{ url_for('setting') }}" class="post-link">
+                <img class="footer-menu-icon" src="{{ url_for('static', filename='image/setting.png') }}" alt="설정아이콘"/>
+            </a>
+            <span>설정</span>
+        </div>
+    </footer>
+    </div>
+
+    <script>
+      // 기존의 JavaScript 코드가 여기에 위치합니다
+      // 모달 요소 가져오기
+      var modal = document.getElementById("adModal");
+
+      // 모달을 여는 버튼 가져오기
+      var btn = document.querySelector(".shower");
+
+      // 모달을 닫는 <span> 요소 가져오기
+      var span = document.querySelector(".close");
+
+      // 비디오 요소 가져오기
+      var video = document.querySelector("video");
+
+      // 캐릭터 이미지 컨테이너 가져오기 (background-image)
+      var characterImageContainer = document.querySelector(".image");
+
+      // 백엔드에서 전달된 nocheck 값
+      var nocheck = Number({{ nocheck }}); // nocheck를 숫자로 변환
+
+      // 현재 캐릭터의 background-image URL 추출
+      var currentCharacterImage = characterImageContainer.style.backgroundImage;
+
+      // background-image 스타일에서 이미지 파일 이름을 추출하는 함수
+      function extractImageName(imageUrl) {
+        var cleanedUrl = imageUrl.replace(/^url\(["']?/, '').replace(/["']?\)$/, '');
+        var filename = cleanedUrl.substring(cleanedUrl.lastIndexOf('/') + 1);
+        return filename;
+      }
+
+      // 캐릭터 이미지 파일 이름 가져오기
+      var characterImageFileName = extractImageName(currentCharacterImage);
+
+      // 떼밀기 버튼 클릭 시 동작
+      btn.onclick = function () {
+        if (characterImageFileName.endsWith("_default.png")) {
+          alert('때밀기를 할 수 없습니다. 기본 캐릭터에서는 때밀기가 불가능합니다.');
+          return;
+        }
+
+        if (nocheck > 9) {
+          modal.style.display = "block"; // nocheck가 10 이상이면 모달 열기
+
+          // 비디오 자동 재생
+          video.play().catch(function (error) {
+            console.error('Error attempting to play the video:', error);
+          });
+        } else {
+          alert('때밀기를 할 수 없습니다.');
+        }
+      };
+
+      // 모달 닫기 버튼 클릭 시 동작
+      span.onclick = function () {
+        modal.style.display = "none";
+
+        // 모달이 닫힐 때 비디오 일시정지
+        video.pause();
+      };
+
+      // 모달 외부 클릭 시 모달 닫기
+      window.onclick = function (event) {
+        if (event.target == modal) {
+          modal.style.display = "none";
+
+          // 모달이 닫힐 때 비디오 일시정지
+          video.pause();
+        }
+      };
+
+      // 비디오 재생이 끝났을 때 nocheck 감소 및 캐릭터 이미지 업데이트
+      video.onended = function () {
+        fetch('/reduce_nocheck', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ user_id: "{{ user_id }}" }),
+        })
+          .then(response => response.json())
+          .then(data => {
+            if (data.success) {
+              alert('때밀기에 성공했습니다!');
+
+              // nocheck 값 업데이트
+              nocheck -= 10;
+
+              // 캐릭터 이미지 동적으로 업데이트
+              fetch('/get_updated_character_image', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ user_id: "{{ user_id }}" }),
+              })
+                .then(response => response.json())
+                .then(data => {
+                  if (data.success && data.character_image) {
+                    // 새로운 캐릭터 이미지로 background-image 업데이트
+                    characterImageContainer.style.backgroundImage = `url('${staticImageBaseURL}${data.character_image}')`;
+                    characterImageFileName = extractImageName(characterImageContainer.style.backgroundImage); // 이미지 파일 이름 업데이트
+                  }
+                });
+
+              // 비디오 종료 후 모달 닫기
+              modal.style.display = "none";
+            } else {
+              alert('때밀기에 실패했습니다.');
+            }
+          })
+          .catch((error) => {
+            console.error('Error:', error);
+          });
+      };
+    </script>
+  </body>
+</html>

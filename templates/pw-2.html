@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>비밀번호 변경</title>
+    <link rel="icon" href="{{ url_for('static', filename='image/icon.png') }}" type="image/x-icon">
+    <link rel="stylesheet" href="pw.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 로고 추가 -->
+        <img src="logo.png" alt="Logo" class="logo">
+
+        <div class="input-container">
+            <input type="password" id="new-password" placeholder="변경 비밀번호" class="input-field">
+        </div>
+
+        <div class="input-container">
+            <input type="password" id="confirm-password" placeholder="비밀번호 확인" class="input-field">
+        </div>
+
+        <!-- 버튼에 텍스트로 '확인' 표시 -->
+        <button class="check-button" onclick="location.href='setting.html'">
+            확인
+        </button>
+    </div>
+</body>
+</html>

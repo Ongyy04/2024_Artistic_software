@@ -1,0 +1,453 @@
+/* Pretendard-Bold 글꼴 정의 */
+@font-face {
+    font-family: 'Pretendard-Bold';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+}
+
+/* 전역 스타일: 모든 요소에 기본 마진과 패딩 제거, 박스 사이징 설정 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Pretendard-Bold', Arial, sans-serif; /* 모든 요소에 Pretendard-Bold 폰트 설정 */
+}
+
+/* 바디 스타일 설정 */
+body {
+    font-family: 'Pretendard-Bold', Arial, sans-serif; /* 기본 폰트 설정 */
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    
+    padding: 0;
+    text-align: center;
+    font-weight: bold;
+    overflow: auto;
+    width: 100%;
+    min-height: 100vh;
+    background-color: #f9f9fb;
+    color: #333;
+}
+
+/* 컨테이너 스타일 */
+.container {
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+/* 헤더 섹션 스타일 */
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+/* 사용자 프로필 섹션 */
+.profile {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    position: relative;
+    
+    margin-bottom: 15px; /* 아래 마진 추가 */
+}
+
+
+
+/* 프로필 이미지 스타일 */
+.profile-image {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+    
+}
+
+/* 사용자 이름 스타일 */
+.username {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+/* 출석 체크 아이콘 스타일 */
+.check {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.logo-image {
+    width: 100px; /* Adjust width as needed */
+    height: auto; /* Maintain aspect ratio */
+    margin-left: 10px; /* Optional: Add spacing */
+}
+.search {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    right: 50px; /* 왼쪽으로 50px 이동 */
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* 검색 바 링크 스타일 */
+.search-bar-wrapper {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    width: auto;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    margin-top: 20px;
+}
+
+/* 검색 아이콘 스타일 */
+.search-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+/* 검색 텍스트 스타일 */
+.search-text {
+    font-size: 1em;
+    color: #333;
+}
+
+/* 탭 메뉴 스타일 */
+.tab-menu {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+/* 각 탭 버튼 스타일 */
+.tab {
+    background-color: #ffffff;
+    border: 1px solid #ffffff;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.9em;
+    cursor: pointer;
+    color: black;
+    transition: box-shadow 0.3s ease;
+    font-weight: bold;
+}
+
+/* 활성화된 탭 스타일 */
+.tab.active {
+    color: #5186D4; /* Updated color */
+    box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* 인기 게시물 및 추천 게시물 헤딩 스타일 */
+.popular-posts h2,
+.recommended-posts h2 {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: left;
+    width: 100%;
+}
+
+/* 인기 게시물 링크 스타일 */
+.popular-posts a {
+    text-decoration: none;
+    color: #000;
+}
+/* 인기 게시물 제목 여백 추가 */
+.popular-posts h2 {
+    margin-bottom: 15px; /* Adjust as needed */
+    margin-top: 10px; /* Optional: Add space above as well */
+}
+
+/* 추천 게시물 제목 여백 추가 */
+.recommended-posts h2 {
+    margin-bottom: 15px; /* Adjust as needed */
+    margin-top: 10px; /* Optional: Add space above as well */
+}
+
+/* 게시물 목록 스타일 */
+.post-list,
+.post-list-hot {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: space-between;
+    width: 100%;
+}
+
+/* 인기 게시물 목록 그리드 설정 */
+.post-list-hot {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+/* 게시물 카드 스타일 */
+.post-card {
+    flex: 0 0 48%;
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0px 2px 4px rgba(81, 134, 212, 0.1); /* Updated color */
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    font-weight: bold;
+}
+
+/* 게시물 카드 호버 효과 */
+.post-card:hover {
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* 커스텀 게시물 카드 스타일 */
+.custom-post-card {
+    position: relative;
+    padding: 10px;
+    border: 1px solid #e1e1e1;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+/* 이미지 플레이스홀더 스타일 */
+.image-placeholder {
+    height: 150px;
+    background-color: #eee;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+}
+
+/* 이미지 스타일 */
+.image-placeholder img {
+    width: 100%;
+    height: 100%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    object-fit: cover;
+    border-radius: 10px;
+    z-index: 1;
+}
+
+/* ID 박스 스타일 */
+.id-box {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: rgba(81, 134, 212, 0.9); /* Updated color */
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 0.9em;
+    font-weight: bold;
+    z-index: 2;
+}
+
+/* 나라 이름 스타일 */
+.post-region {
+    margin-top: 10px;
+    font-size: 0.9em;
+    font-weight: bold;
+    color: #555;
+    text-align: center;
+}
+
+/* 추천 게시물 스타일 (post-list-recommended) */
+.post-list-recommended {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* 하단 네비게이션 바 스타일 */
+.footer-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    color: #888;
+    font-size: 0.8em;
+    text-align: center;
+    margin: 0 20px;
+    font-weight: bold;
+}
+
+/* 네비게이션 아이콘 스타일 */
+.footer-menu-icon {
+    height: 25px;
+    width: 25px;
+}
+
+/* 하단 네비게이션 바 전체 스타일 */
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff;
+    border-top: 2px solid #eee;
+    padding: 15px 0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    max-width: 360px;
+    margin: 0 auto;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 420px) {
+    .footer-menu {
+        margin: 0 10px;
+    }
+
+    .post-card {
+        flex: 0 0 100%;
+    }
+
+    .post-list-hot {
+        grid-template-columns: 1fr;
+    }
+}
+/* 인기 게시물 스타일 */
+.post-list-hot {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    
+}
+.profile-img {
+    width: 25px;
+    height: 25px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    margin-right: 10px;
+    
+}
+.hot-post-card {
+    position: relative;
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    
+    
+}
+
+.post-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.profile-thumbnail {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.username {
+    font-size: 0.9em;
+    font-weight: bold;
+}
+
+.post-country {
+    margin-top: 10px;
+    font-size: 0.9em;
+    color: #000000;
+}
+/* 추천 게시물 스타일 */
+.recommended-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.recommended-post-card {
+    background-color: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.recommended-post-card .post-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.recommended-post-card .profile-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.recommended-post-card .username {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #333;
+}
+.bottom {
+    margin-bottom: 80px;
+}
+
+.recommended-post-card .image-placeholder {
+    width: 100%;
+    padding-top: 100%;
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.recommended-post-card .image-placeholder img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.recommended-post-card .post-hashtags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.recommended-post-card .hashtag {
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-size: 0.9em;
+    color: #5186D4;
+}
+

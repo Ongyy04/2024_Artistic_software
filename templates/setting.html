@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings</title>
+    <link rel="icon" href="{{ url_for('static', filename='image/icon.png') }}" type="image/x-icon">
+    <style>
+        /* Pretendard-Regular 글꼴 정의 */
+        @font-face {
+            font-family: 'Pretendard-Regular';
+            src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+        /* Import the Pretendard-Regular font */
+        @font-face {
+            font-family: 'Pretendard-Bold';
+            src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Bold.woff') format('woff');
+            font-weight: bold;
+            font-style: normal;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Pretendard-Regular', Arial, sans-serif;
+            background-color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container {
+            background-color: #ffffff;
+            font-size: 15px;
+            padding: 20px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 400px;
+            height: 90vh;
+            text-align: center;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            z-index: 10;
+        }
+
+        .profile-instruction {
+            margin-bottom: 10px;
+        }
+
+        .back-arrow {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 1;
+            width: 25px;
+            height: 25px;
+        }
+
+        .back-arrow img {
+            width: 25px;
+            height: 25px;
+        }
+
+        .profile-image {
+            width: 80px; /* 프로필 이미지 크기 축소 */
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            background-color: rgba(255, 255, 255, 0.8);
+            filter: brightness(0.9);
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .profile-image:hover {
+            transform: scale(1.05);
+            filter: brightness(1);
+        }
+
+        .nickname_link {
+            text-decoration: none;
+        }
+
+        .profile-instruction {
+            font-size: 14px;
+            color: #888888;
+            margin-top: 8px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .input-field {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #ffffff;
+            padding: 5px 10px;
+            margin: 0 auto 8px auto; /* Center align horizontally with top/bottom margin */
+            height: 40px;
+            border-radius: 20px;
+            border: 2px solid #d3d3d3; /* Gray border by default */
+            font-size: 14px;
+            width: 80%; /* Reduce width to 80% of the container */
+            max-width: 300px; /* Set a maximum width */
+            transition: border-color 0.3s ease; /* Smooth transition for hover effect */
+        }
+
+        .input-field:hover {
+            border-color: #5186d4; /* Change border color on hover */
+        }
+
+        .input-field input {
+            border: none;
+            background: none;
+            outline: none;
+            flex-grow: 1;
+            padding-left: 8px;
+            font-size: 14px;
+        }
+
+
+
+
+
+        .nickname-field {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 25px;
+            padding: 10px;
+        }
+
+        .nickname-group {
+            display: flex;
+            align-items: center;
+        }
+
+        .profile-instruction {
+            margin-right: 10px;
+            text-align: center;
+        }
+
+        .edit-button {
+            width: 20px;
+            height: 20px;
+            background: url('/static/image/change.png') no-repeat center center;
+            background-size: contain;
+            cursor: pointer;
+        }
+
+        button {
+            width: 80%;
+            height: 40px; /* 버튼 높이 축소 */
+            padding: 10px 0; /* 패딩 축소 */
+            background-color: #5186d4;
+            color: white;
+            border: none;
+            border-radius: 20px; /* 버튼 둥글게 설정 */
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+            font-size: 14px; /* 폰트 크기 축소 */
+            font-weight: bold;
+            border: 1px solid #5186d4;
+            font-family: 'Pretendard-Regular', Arial, sans-serif;
+            margin: 10px auto;
+        }
+
+        button:hover {
+            background-color: white;
+            color: #5186d4;
+            border: 1px solid #5186d4;
+        }
+
+        .back-arrow {
+            background: url('static/image/back-arrow.png') no-repeat center center;
+        }
+
+        .version-info, .build-info {
+            font-family: 'Pretendard-Regular', Arial, sans-serif;
+            font-size: 12px; /* 버전 및 빌드 정보 크기 축소 */
+            color: #888888;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .about-us {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 50px;
+        }
+
+        .icon-button {
+            width: 20px; /* 아이콘 버튼 크기 축소 */
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .search-button, .instagram-button {
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        .about-us-text {
+            font-size: 14px; /* ABOUT US 텍스트 크기 축소 */
+            color: #888888;
+            margin-right: 20px;
+            font-weight: bold;
+        }
+        /* Bold font applied to labels */
+        label {
+            font-family: 'Pretendard-Bold', Arial, sans-serif;
+            font-weight: bold;
+        }
+        .search-button, .instagram-button {
+            width: 20px;
+            height: 20px;
+            background-size: contain;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        .search-button {
+            background: url('/static/image/search-icon.png') no-repeat center center;
+        }
+
+        .instagram-button {
+            background: url('/static/image/instagram-icon.png') no-repeat center center;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="{{ url_for('home_view') }}">
+            <img
+              class="back-arrow"
+              src="{{ url_for('static', filename='image/back-arrow.png') }}"
+              alt="back to home"
+            />
+        </a>
+
+        <img id="profile-image" src="{{ profile_image }}" alt="Profile Image" class="profile-image">
+        <form id="profile-form" method="POST" enctype="multipart/form-data" action="{{ url_for('change_profile') }}" style="display: none;">
+            <input type="file" id="profile-input" name="profile_image" accept="image/*" />
+        </form>
+
+        <div class="nickname-field">
+            <div class="nickname-group">
+                <p class="profile-instruction">{{ nickname }}</p>
+                <a href="{{ url_for('change_nickname') }}" class="nickname_link">
+                    <div class="edit-button"></div>
+                </a>
+            </div>
+        </div>        
+
+        <div class="input-field">
+            <label for="name">이름</label>
+            <input type="text" id="name" value="{{ name }}" readonly>
+        </div>
+
+        <div class="input-field">
+            <label for="phone">전화</label>
+            <input type="text" id="phone" value="{{ phone_number }}" readonly>
+            <a href="{{ url_for('change_phone') }}"><div class="edit-button"></div></a>
+        </div>
+
+        <div class="input-field">
+            <label for="id">아이디</label>
+            <input type="text" id="id" value="{{ login_id }}" readonly>
+        </div>
+
+        <div class="input-field">
+            <label for="password">비밀번호</label>
+            <input type="password" id="password" value="{{ password }}" readonly>
+            <a href="{{ url_for('change_password_handler') }}"><div class="edit-button"></div></a>
+        </div>
+
+        <div class="input-field">
+            <label for="gender">성별</label>
+            <input type="text" id="gender" value="{{ gender }}" readonly>
+            <a href="{{ url_for('change_gender') }}"><div class="edit-button"></div></a>
+        </div>
+
+        <div class="input-field">
+            <label for="age">연령대</label>
+            <input type="text" id="age" value="{{ age }}" readonly>
+            <a href="{{ url_for('change_age') }}"><div class="edit-button"></div></a>
+        </div>
+
+        <div class="input-field">
+            <label for="prefer">선호 유형</label>
+            <input type="text" id="prefer" value="{{ prefer }}" readonly>
+            <a href="{{ url_for('change_prefer') }}"><div class="edit-button"></div></a>
+        </div>
+
+        <button class="logout-button" onclick="window.location.href='{{ url_for('logout') }}'">Logout</button>
+
+        <!-- VERSION과 Build 텍스트 추가 -->
+        <p class="version-info">VERSION : 3.12.4</p>
+        <p class="build-info">Build : 123.42351.12</p>
+
+        <!-- ABOUT US 섹션 추가 -->
+        <div class="about-us">
+            <p class="about-us-text">ABOUT US</p>
+            <div class="search-button" onclick="window.location.href='https://github.com/yesooljukinsoftware'">
+                <img src="static/image/git.png" alt="GitHub" class="icon-button"/>
+            </div>
+            <div class="instagram-button" onclick="window.location.href='https://www.instagram.com/eun.ou24/'">
+                <img src="static/image/insta.png" alt="Instagram" class="icon-button"/>
+            </div>
+        </div>
+
+
+    <script>
+        const userType = "{{ user_type }}";  // Get user type from the server
+        document.getElementById('profile-image').addEventListener('click', function() {
+            document.getElementById('profile-input').click();
+        });
+
+        document.getElementById('profile-input').addEventListener('change', function() {
+            // Automatically submit the form when a file is selected
+            document.getElementById('profile-form').submit();
+        });
+
+        document.getElementById('password-edit-button').addEventListener('click', function() {
+            if (userType === 'naver' || userType === 'kakao' || userType === 'google') {
+                alert('소셜 회원가입은 비밀번호 수정이 불가능합니다!');
+            } else {
+                window.location.href = "{{ url_for('change_password_handler') }}";
+            }
+        });
+
+    </script>
+</body>
+</html>

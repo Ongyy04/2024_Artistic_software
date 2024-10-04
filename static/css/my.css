@@ -1,0 +1,422 @@
+/* Import the Pretendard-Regular font */
+@font-face {
+    font-family: 'Pretendard-Bold';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+}
+
+/* 공통 스타일 (Common styles for the whole page) */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Pretendard-Bold', Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+    overflow: auto; /* Allows body to scroll */
+    width: 100%;
+    min-height: 100vh; /* Minimum height to cover full viewport */
+}
+
+.container {
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    font-weight: bold;
+    margin-top: 20px; /* Added margin for spacing from top */
+}
+
+
+header {
+    display: flex;
+    justify-content: left; /* 텍스트와 이미지를 가운데 정렬 */
+    align-items: left; /* 수직 정렬을 맞춤 */
+    padding: 0;
+    background-color: #fff;
+    /* Removed border-bottom to remove the underline */
+    border-bottom: none; 
+    max-width: 360px;
+    margin: 0 auto;
+    width: 100%;
+    margin-bottom: 20px; /* Spacing between header and next section */
+    font-size: medium;
+}
+
+header h1 {
+    font-family: 'Pretendard-Bold', Arial, sans-serif;
+    display: flex;
+    align-items: left; /* h1 안의 텍스트와 이미지를 수직 중앙 정렬 */
+    font-size: 30px; /* 제목 글씨 크기 */
+}
+
+header img {
+    width: 24px; /* 이미지 크기 조정 */
+    height: 24px;
+    margin-top: 8px; /* 텍스트와 이미지 간격 */
+    margin-right: 4px;
+}
+
+.back-button {
+    font-size: 24px;
+    text-decoration: none;
+    color: #000;
+    margin-right: 10px;
+}
+
+.shower {
+    text-align: right;
+    font-family: 'Pretendard-Bold';
+}
+
+.character-section {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.character-avatar .avatar-placeholder {
+    width: 50px;
+    height: 50px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    background-image: url(./image/character/캐릭터.png);
+    background-position: center;
+    background-size: cover;
+}
+
+.character-info {
+    margin-left: 15px;
+}
+
+.character-info p {
+    margin: 0;
+    font-size: 16px;
+}
+
+.character-info span {
+    font-size: 14px;
+    color: #999;
+}
+
+.character-image-section .box {
+    height: 300px;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 10px;
+    position: relative; /* This allows the button to be positioned absolutely */
+}
+
+
+.character-image-section .image {
+    width: 100%;
+    height: 100%; /* 원하는 높이로 설정 */
+    background-position: center;
+    background-size: cover;
+}
+
+.character-image-section .shower {
+    position: absolute;
+    right: 10px; /* 오른쪽에 붙이기 */
+    bottom: 10px; /* 박스 하단에서 약간 띄우기 */
+    background-color: #3753FF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.character-image-section .shower:hover {
+    background-color: #2d45c3;
+}
+
+.character-image-section {
+    margin-bottom: 20px;
+}
+
+.items-section {
+    margin-bottom: 20px;
+}
+
+.items-section h2 {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.items-section a {
+    text-decoration: none;
+    color: #000;
+}
+
+.items-section a:hover{
+    box-shadow: 0 3px 6px rgba(0,0,0,0.2);;
+}
+
+.item-row , .badge-row , .deco-row{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.item-box , .badge-box {
+    width: 48%;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center;
+}
+
+.item-image , .badge-image, .deco-image{
+    width: 100%;
+    height: 80px;
+    background-color: #f2f2f2;
+    margin-bottom: 10px;
+    background-image: url(./image/character/캐릭터.png);
+    background-position: center;
+    background-size: cover;
+}
+
+.deco-box{
+    width: 58%;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center;
+}
+
+.badge-image {
+    background-image: url(./image/icon/stamp.png);
+    height: 150px;
+}
+
+.deco-image{
+    background-position: center;
+    background-size: cover;
+    height: 150px;
+}
+
+p {
+    margin: 5px 0;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.bottom {
+    margin-bottom: 50px;
+}
+
+/* 하단 네비게이션 바 스타일 */
+.footer-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    color: #888;
+    font-size: 0.8em;
+    text-align: center;
+    margin: 0 20px;
+    font-weight: bold;
+}
+
+/* 네비게이션 아이콘 스타일 */
+.footer-menu-icon {
+    height: 25px;
+    width: 25px;
+}
+
+/* 하단 네비게이션 바 전체 스타일 */
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff;
+    border-top: 2px solid #eee;
+    padding: 15px 0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    max-width: 360px;
+    margin: 0 auto;
+}
+
+
+/* 내 게시물 (My Posts) section styled like 추천 게시물 */
+.recommendation-cards {
+    display: flex;
+    gap: 10px;
+}
+
+.recommendation-cards p {
+    text-align: center;
+    font-size: 16px;
+    color: #999;
+}
+
+
+.card {
+    flex: 1;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+    margin-bottom: 10px;
+}
+
+/* .card:hover {
+    background-color: #ffffff;
+    border: 1px solid #3753FF;
+} */
+
+.card-img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+.card-content {
+    padding: 15px;
+    text-align: left;
+}
+
+.card-content .review {
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.card-content .location {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.card-content .author {
+    font-size: 12px;
+    color: #999;
+}
+/* Styling for accessory (악세사리) images */
+.item-image {
+    width: 100%;
+    height: 80px;
+    background-color: #f2f2f2;
+    margin-bottom: 10px;
+    background-position: center;
+    background-size: cover;
+}
+
+/* Styling for badge (뱃지) images */
+.badge-image {
+    width: 100%;
+    height: 150px;
+    background-position: center;
+    background-size: cover;
+}
+/* Styling for all h2 headings, including 내 게시물 */
+h2 {
+    font-size: 16px; /* Ensure the same font size for all h2 elements */
+    margin-bottom: 10px;
+    color: #333;
+    border-bottom: 1px solid #ddd; /* Add underline */
+    padding-bottom: 5px; /* Optional padding for better spacing */
+}
+
+/* Remove hover effect underline if it exists for links */
+a.bottom h2:hover {
+    border-bottom: 1px solid #ddd;
+}
+
+img {
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.character-image-section .box {
+    height: 300px;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 10px;
+    position: relative; /* This allows the button to be positioned absolutely */
+}
+
+.character-image-section .image {
+    width: 100%;
+    height: 100%; /* 원하는 높이로 설정 */
+    background-position: center;
+    
+    background-size: contain;
+    background-repeat: no-repeat;
+    
+}
+
+.character-image-section .shower {
+    position: absolute;
+    right: 10px; /* 오른쪽에 붙이기 */
+    bottom: 10px; /* 박스 하단에서 약간 띄우기 */
+    background-color: #5186D4;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.character-image-section .shower:hover {
+    background-color: #5186D4;
+}
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Dark background */
+}
+
+.modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 600px;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+video {
+    width: 100%;
+    height: auto;
+}
+

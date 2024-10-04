@@ -1,0 +1,167 @@
+/* Pretendard-Regular 글꼴 정의 */
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* 기본 설정 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* body에 Pretendard-Regular 적용 */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f6f6f6;
+    font-family: 'Pretendard-Regular', Arial, sans-serif; /* Pretendard-Regular 적용 */
+}
+
+.container {
+    background-color: #ffffff;
+    font-size: 15px;
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 400px;
+    height: 90vh;
+    text-align: center;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* 요소들을 세로로 가운데 정렬 */
+    align-items: center; /* 요소들을 가로로 가운데 정렬 */
+    gap: 20px; /* 요소들 간의 간격 */
+    font-family: 'Pretendard-Regular', Arial, sans-serif; /* Pretendard-Regular 적용 */
+}
+
+.logo {
+    width: 300px;
+    height: auto;
+}
+
+/* input-container 설정 */
+.input-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px; /* 입력 필드와 버튼 사이의 간격 */
+    width: 100%; /* 컨테이너의 너비를 100%로 설정 */
+}
+
+/* id-input 크기를 늘림 */
+.phone-input {
+    width: 70%; /* 입력 필드 너비를 85%로 설정 (크기 늘림) */
+    padding: 15px;
+    border-radius: 25px;
+    border: 1px solid #ddd;
+    font-size: 16px;
+    font-family: 'Pretendard-Regular', Arial, sans-serif;
+}
+.phone-input:focus {
+    border: 1px solid #3753FF; /* 클릭 시 파란색으로 변경 */
+    outline: none; /* 브라우저 기본 outline 제거 */
+}
+/* verify-button 크기를 줄임 */
+.verify-button {
+    width: 30%; /* 버튼 너비를 15%로 설정 (크기 줄임) */
+    padding: 10px; /* 버튼 패딩을 줄여 크기 줄임 */
+    border-radius: 25px;
+    border: 1px solid transparent;
+    background-color: #3753FF;
+    color: white;
+    font-size: 16px; /* 버튼 글자 크기 줄임 */
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    font-family: 'Pretendard-Regular', Arial, sans-serif;
+    font-weight: bold;
+}
+
+.verify-button:hover {
+    background-color: white;
+    color: #3753FF;
+    border-color: #3753FF;
+}
+
+/* 기존 button 스타일 */
+button {
+    width: 80%;
+    height: 50px;
+    padding: 15px 0;
+    background-color: #3753FF;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    font-size: 16px;
+    
+    font-weight: bold;
+    border: 1px solid #3753FF;
+    font-family: 'Pretendard-Regular', Arial, sans-serif;
+}
+
+button:hover {
+    background-color: white;
+    color: #3753FF;
+    border: 1px solid #3753FF;
+}
+
+.prompt-text {
+    font-weight: bold;
+    font-size: 25px;
+    margin-bottom: 10px;
+    font-family: 'Pretendard-Regular', Arial, sans-serif;
+}
+/* Existing CSS rules for input-container and buttons remain the same */
+
+/* New section styling for verification */
+#verification-section {
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.verification-input {
+    width: 70%;
+    padding: 15px;
+    border-radius: 25px;
+    border: 1px solid #ddd;
+    font-size: 16px;
+    font-family: 'Pretendard-Regular', Arial, sans-serif;
+}
+
+.verification-input:focus {
+    border: 1px solid #3753FF;
+    outline: none;
+}
+
+.confirm-button {
+    width: 80%;
+    padding: 15px 0;
+    background-color: #3753FF;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    font-family: 'Pretendard-Regular', Arial, sans-serif;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.confirm-button:hover {
+    background-color: white;
+    color: #3753FF;
+    border: 1px solid #3753FF;
+}

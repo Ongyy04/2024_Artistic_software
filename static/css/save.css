@@ -1,0 +1,178 @@
+/* Import the Pretendard-Regular font */
+@font-face {
+    font-family: 'Pretendard-Bold';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+}
+
+/* 공통 스타일 (Common styles for the whole page) */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Pretendard-Bold', Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+    overflow: auto; /* Allows body to scroll */
+    width: 100%;
+    min-height: 100vh; /* Minimum height to cover full viewport */
+}
+
+.container {
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 360px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    font-weight: bold;
+    margin-top: 20px; /* Added margin for spacing from top */
+    margin-left: auto;
+    margin-right: auto; /* Ensure container is centered horizontally */
+}
+
+header {
+    padding: 0;
+    background-color: #fff;
+    border-bottom: none; 
+    max-width: 360px;
+    margin: 0 auto;
+    width: 100%;
+    margin-bottom: 20px; /* Spacing between header and next section */
+    font-size: medium;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    font-family: 'Pretendard-Bold', Arial, sans-serif;
+    font-size: 30px;
+    margin: 0;
+}
+
+header img {
+    width: 24px; /* 이미지 크기 조정 */
+    height: 24px;
+    margin-right: 4px;
+}
+
+.back-button {
+    font-size: 24px;
+    text-decoration: none;
+    color: #000;
+    margin-right: 10px;
+}
+
+.character-section {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.character-avatar .avatar-placeholder {
+    width: 50px;
+    height: 50px;
+    background-color: #ccc;
+    border-radius: 50%;
+    background-image: url(./image/character/캐릭터.png);
+    background-position: center;
+    background-size: cover;
+}
+
+.character-info {
+    margin-left: 15px;
+}
+
+.character-info p {
+    margin: 0;
+    font-size: 16px;
+}
+
+.character-info span {
+    font-size: 14px;
+    color: #999;
+}
+
+.character-image-section .box {
+    height: 300px;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 10px;
+    position: relative; /* This allows the button to be positioned absolutely */
+}
+
+.character-image-section .image {
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-size: cover;
+}
+
+.character-image-section .shower {
+    position: absolute;
+    right: 10px; /* 오른쪽에 붙이기 */
+    bottom: 10px; /* 박스 하단에서 약간 띄우기 */
+    background-color: #3753FF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.character-image-section .shower:hover {
+    background-color: #2d45c3;
+}
+
+.bottom {
+    margin-bottom: 50px;
+}
+
+/* 하단 네비게이션 바 스타일 */
+.footer-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    color: #888;
+    font-size: 0.8em;
+    text-align: center;
+    margin: 0 20px;
+    font-weight: bold;
+}
+
+/* 네비게이션 아이콘 스타일 */
+.footer-menu-icon {
+    height: 25px;
+    width: 25px;
+}
+
+/* 하단 네비게이션 바 전체 스타일 */
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff;
+    border-top: 2px solid #eee;
+    padding: 15px 0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    max-width: 360px;
+    margin: 0 auto;
+}
+

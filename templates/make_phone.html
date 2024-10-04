@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>전화번호 생성</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/make_phone.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='image/icon.png') }}" type="image/x-icon">
+    <script defer src="{{ url_for('static', filename='js/make_phone.js') }}"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>새로 오신 걸 환영합니다!</h1>
+        <img src="{{ url_for('static', filename='image/character_5.png') }}" alt="Character Image" class="character-image">
+        <p class="prompt-text">전화번호를 설정하세요</p>
+        <form id="phone-form" method="POST" action="/make_phone">
+            <div class="input-container">
+                <input type="text" class="phone-input" name="phone_number" placeholder="전화번호" required>
+                <button class="verify-button" type="button" id="verify-btn">인증</button>
+            </div>
+
+            <!-- 인증번호 입력 창과 확인 버튼이 삽입될 곳 -->
+            <div id="verification-section"></div>
+
+            <button id="next-btn" type="submit">다음으로</button>
+        </form>
+    </div>
+</body>
+</html>
