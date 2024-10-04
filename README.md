@@ -1,6 +1,6 @@
 ## ✈️ 나만의 여행을 만들다 'Tinda'
 
-#### 2024년도 예술적인 소프트웨어 주니어 특별
+#### 2024년도 예술적인 소프트웨어 주니어 특별상
 #### 프로젝트 기간 : 2024.5-2024.10
 #### 개발기간 : 2024.09-2024.10
 
@@ -16,22 +16,27 @@
 ## ✅ 주요 기능
 
 ### 1️⃣ 로그인
-![login](https://github.com/user-attachments/assets/9d3dc6e3-edc2-41cd-b3f3-5f8195d7d214)
+![login](https://github.com/user-attachments/assets/350ef8c6-6be5-4b68-8fa8-ba144bb9afb6)
 
 ### 2️⃣ 글쓰기
-![write](https://github.com/user-attachments/assets/a54d19d4-0a05-4760-9c62-773d51b9fc3b)
+![write_2](https://github.com/user-attachments/assets/89db1b8b-fbdd-4a8d-947a-8f492a9ecfc1)
+![write_1](https://github.com/user-attachments/assets/5d04707e-5464-4d90-a3da-26adde54f5f8)
 
 ### 3️⃣ 저장됨
-![save](https://github.com/user-attachments/assets/2a4fe852-2942-4fc6-b01a-30d241afb0e7)
+![save](https://github.com/user-attachments/assets/1efeb981-4034-4853-8dbb-8bd6eabec1cb)
 
 ### 4️⃣ 홈 화면
-![home](https://github.com/user-attachments/assets/55aa5d8d-e18c-450b-a056-49c95864c1db)
+![home](https://github.com/user-attachments/assets/36d66038-6f6b-4d8b-9f14-9ae647dbbed0)
 
 ### 5️⃣ 내 여행
-![my](https://github.com/user-attachments/assets/ca9fc8f5-868e-4cdb-8b05-63f70670cdc6)
+![my](https://github.com/user-attachments/assets/608ad469-aae3-4c57-9883-48f12a839455)
+![Tinda_최종발표-24](https://github.com/user-attachments/assets/8ed708f9-af0b-4d1a-aeb4-c4c6ea4a6adf)
+![char1](https://github.com/user-attachments/assets/3dde0db6-7346-4408-a870-bdb1ba639329)
+
 
 ### 6️⃣ 출석 체크
-![check](https://github.com/user-attachments/assets/8dbc78f9-4069-4379-aa7e-0e33221b5c4f)
+![check](https://github.com/user-attachments/assets/b94a5e88-8b03-4b78-9957-6e4fd26d593c)
+
 
 
 
