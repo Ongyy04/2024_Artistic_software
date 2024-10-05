@@ -54,11 +54,9 @@
     <tr>
       <td align="center"><a href=""><img src="https://github.com/user-attachments/assets/d5a8a20b-ac7c-4b88-9d0d-ea374b2fd39b" width="100px;" alt="팀장: 오은서"/><br /><sub><b>팀장 : 오은서</b></sub></a><br /></td>
      <td align="center"><a href=""><img src="" width="100px;" alt="디자인: 이주은"/><br /><sub><b>디자인: 이주은</b></sub></a><br /></td>
-      <td align="center"><a href=""><img src="![image](https://github.com/user-attachments/assets/1f36ff4f-bcfe-4359-9221-faa252b020ce)
-" width="100px;" alt="개발: 김정우 "/><br /><sub><b>개발: 김정우</b></sub></a><br /></td>
-      <td align="center"><a href=""><img src="![image](https://github.com/user-attachments/assets/a6c27d77-d27e-4c2e-8adc-9258a99030f1)
-" width="100px;" alt="개발: 민승기"/><br /><sub><b>개발: 민승기</b></sub></a><br /></td>
-      <td align="center"><a href=""><img src="![image](https://github.com/user-attachments/assets/ee303ff0-4206-4f35-aaf6-dea21ec60ceb)
+      <td align="center"><a href=""><img src="https://github.com/user-attachments/assets/67d39238-34a9-4fdc-913a-242acab4a584" width="100px;" alt="개발: 김정우 "/><br /><sub><b>개발: 김정우</b></sub></a><br /></td>
+      <td align="center"><a href=""><img src="![89887371](https://github.com/user-attachments/assets/a32d6903-05ea-4d5a-9f81-ff1fad242112)" width="100px;" alt="개발: 민승기"/><br /><sub><b>개발: 민승기</b></sub></a><br /></td>
+      <td align="center"><a href=""><img src="![167512644](https://github.com/user-attachments/assets/c3836ba2-80cd-4f05-bec4-9a32ebac6935)
 " width="100px;" alt="개발: 천수만"/><br /><sub><b>개발: 천수만</b></sub></a><br /></td>
     </tr>
   </tbody>
