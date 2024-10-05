@@ -56,8 +56,8 @@
      <td align="center"><a href=""><img src="" width="100px;" alt="디자인: 이주은"/><br /><sub><b>디자인: 이주은</b></sub></a><br /></td>
       <td align="center"><a href=""><img src="https://github.com/user-attachments/assets/67d39238-34a9-4fdc-913a-242acab4a584" width="100px;" alt="개발: 김정우 "/><br /><sub><b>개발: 김정우</b></sub></a><br /></td>
       <td align="center"><a href=""><img src="![89887371](https://github.com/user-attachments/assets/a32d6903-05ea-4d5a-9f81-ff1fad242112)" width="100px;" alt="개발: 민승기"/><br /><sub><b>개발: 민승기</b></sub></a><br /></td>
-      <td align="center"><a href=""><img src="![167512644](https://github.com/user-attachments/assets/c3836ba2-80cd-4f05-bec4-9a32ebac6935)
-" width="100px;" alt="개발: 천수만"/><br /><sub><b>개발: 천수만</b></sub></a><br /></td>
+      <td align="center"><a href=""><img src="" width="100px;" alt="개발: 천수만"/><br /><sub><b>개발: 천수만</b></sub></a><br /></td>
     </tr>
   </tbody>
 </table>
+![gg](https://github.com/user-attachments/assets/6fb92596-53fd-4a02-8f49-c9896394ba13)
